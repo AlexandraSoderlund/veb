@@ -13,18 +13,21 @@ namespace veb.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Profil()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = " Din profil sida";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Vänner()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Här är dina vänner";
 
             return View();
         }
+        
+
+
     }
 }
