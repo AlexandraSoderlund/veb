@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace webapp.Models
+namespace Datalager.Models
 {
     public class Profile
     {
