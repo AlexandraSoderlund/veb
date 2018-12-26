@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using webapp.Models;
 
 namespace webapp.Controllers
@@ -16,10 +15,9 @@ namespace webapp.Controllers
             ViewBag.Message = " Din profil sida";
             using (var db = new DejtDbContext())
             {
-                var förstaprofilen = db.Profiles.First();
-                return View(förstaprofilen);
+                //hämta profil här
             }
-            //return View();
+            return View();
 
         }
 
@@ -29,7 +27,7 @@ namespace webapp.Controllers
 
             return View();
         }
-        
+
 
 
     }

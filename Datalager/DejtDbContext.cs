@@ -8,7 +8,7 @@ namespace webapp.Models
         public DbSet<Profile> Profiles { get; set; }
 
 
-        public DejtDbContext() : base("dejtdb123") {
+        public DejtDbContext() : base("karleksmums") {
 
         }
     }
