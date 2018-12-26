@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using veb.Models;
+using webapp.Models;
 
-namespace veb
+namespace webapp
 {
     public class MvcApplication : System.Web.HttpApplication
     {

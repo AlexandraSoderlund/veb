@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace veb.Models
+namespace webapp.Models
 {
     public class DejtDbContext : DbContext
     {

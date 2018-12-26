@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using veb.Models;
+using webapp.Models;
 
-namespace veb.Controllers
+namespace webapp.Controllers
 {
     public class HomeController : Controller
     {
