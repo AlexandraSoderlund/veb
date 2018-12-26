@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using webapp.Models;
 
@@ -17,12 +14,12 @@ namespace webapp.Controllers
         public ActionResult Profil()
         {
             ViewBag.Message = " Din profil sida";
-            //using (var db = new dejtdbcontext())
-            //{
-            //    var förstaprofilen = db.profiles.first();
-            //    return view(förstaprofilen);
-            //}
-            return View();
+            using (var db = new DejtDbContext())
+            {
+                var förstaprofilen = db.Profiles.First();
+                return View(förstaprofilen);
+            }
+            //return View();
 
         }
 
