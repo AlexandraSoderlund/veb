@@ -208,6 +208,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bilder\balloon-991680_1920.jpg" />
+    <Content Include="bilder\girl-1722402_1920.jpg" />
+    <Content Include="bilder\love-3061483_1920.jpg" />
+    <Content Include="bilder\love.jpg" />
+    <Content Include="bilder\man-1150058_1920.jpg" />
+    <Content Include="bilder\man-1245658_1920.jpg" />
+    <Content Include="bilder\photographer-407068_1920.jpg" />
+    <Content Include="bilder\running-573762_1920.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
