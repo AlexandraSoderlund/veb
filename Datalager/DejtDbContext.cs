@@ -1,7 +1,7 @@
 ﻿using Datalager.Models;
 using System.Data.Entity;
 
-namespace webapp.Models
+namespace Datalager
 {
     public class DejtDbContext : DbContext
     {
