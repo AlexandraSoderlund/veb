@@ -14,7 +14,7 @@ namespace webapp.Controllers
         {  
        
             ViewBag.Message = "exempelprofil sida";
-            return View();
+            return View("ExempelProfil");
         }
     }
 }

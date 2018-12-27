@@ -280,9 +280,10 @@
       <BrowseToURL>~/Home/Profil</BrowseToURL>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Profilsida\exempelprofil.cshtml">
+    <Content Include="Views\ExempelProfil\ExempelProfil.cshtml">
       <BrowseToURL>~/Profilsida/Exprofil</BrowseToURL>
     </Content>
+    <Content Include="TestSidaTaBort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
