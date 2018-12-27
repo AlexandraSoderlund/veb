@@ -55,8 +55,8 @@ namespace webapp.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Lösenord")]
+        public string Lösenord { get; set; }
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
@@ -72,13 +72,13 @@ namespace webapp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Lösenord")]
+        public string Lösenord { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        [Display(Name = "Bekräftalösenord")]
+        [Compare("Lösenord", ErrorMessage = "Lösenordet matchar inte med det bekräftade lösenordet.")]
+        public string Bekräftalösenord { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -91,13 +91,13 @@ namespace webapp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Lösenord")]
+        public string Lösenord { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        [Display(Name = "Bekräftalösenord")]
+        [Compare("Lösenord", ErrorMessage = "Lösenordet matchar inte med det bekräftade lösenordet.")]
+        public string Bekräftalösenord { get; set; }
 
         public string Code { get; set; }
     }
