@@ -10,6 +10,11 @@
 <h2>massa beskrivning om personen som ska vara kopplat till redigeringssidan</h2>
 
 
+<h4> Beskrivning om mig </h4>
+@Html.TextAreaFor(x => x.Description, new { @class = "form-control", @cols = "", @rows = 6 })
+
+
+
 <div class="form-group">
     <label for="post">skicka ett inlägg</label>
     <textarea class="form-control" rows="5" id="comment"></textarea>
