@@ -72,6 +72,7 @@ namespace webapp.Controllers
                 if (profile != null)
                 {
                     viewModel.Description = profile.Description;
+                    viewModel.ProfileImageUrl = profile.ProfileImageUrl;
                 }
 
                 return View(viewModel);

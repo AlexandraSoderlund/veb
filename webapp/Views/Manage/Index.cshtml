@@ -8,17 +8,25 @@
 
     @using (Html.BeginForm("SaveProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <div class="edit-profile-container">
-            <h4>Profilbild</h4>
-            @Html.TextBoxFor(x => x.ProfileImage, new { Type = "File" })
-            <h4> Beskrivning </h4>
-            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @cols = "", @rows = 6 })
-            <div class="form-group">
-                <input type="submit" value="Spara" class="btn btn-default pull-right mt10" />
-                <div class="clearfix"></div>
-            </div>
-            <p class="text-success">@ViewBag.StatusMessage</p>
+    <div class="edit-profile-container">
+        <h4>Profilbild</h4>
+        @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+        {
+            <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+
+        }
+        else {
+            <img src="~/bilder/noProfilePic.jpg" class="profile-pic"/>
+        }
+        @Html.TextBoxFor(x => x.ProfileImage, new { Type = "File", @class="mt10"})
+        <h4> Beskrivning </h4>
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @cols = "", @rows = 6 })
+        <div class="form-group">
+            <input type="submit" value="Spara" class="btn btn-default pull-right mt10" />
+            <div class="clearfix"></div>
         </div>
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
     }
     <div class="mt10">
         @Html.ActionLink("Change your password", "ChangePassword")
