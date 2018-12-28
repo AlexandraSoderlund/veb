@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Datalager;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -64,8 +65,18 @@ namespace webapp.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new EditProfileViewModel();
-            return View(model);
+            var viewModel = new EditProfileViewModel();
+            using (var db = new DejtDbContext()) {
+
+                var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
+                if (profile != null)
+                {
+                    viewModel.Description = profile.Description;
+                }
+
+                return View(viewModel);
+            }
+
         }
 
         //
