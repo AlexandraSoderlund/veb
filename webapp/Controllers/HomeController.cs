@@ -26,6 +26,7 @@ namespace webapp.Controllers
         public ActionResult Vänner()
         {
             ViewBag.Message = "Här är dina vänner";
+            using(var db = new DejtDbContext())
 
             return View();
         }
