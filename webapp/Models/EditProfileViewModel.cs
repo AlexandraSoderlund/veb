@@ -1,0 +1,11 @@
+﻿using System.Web;
+
+namespace webapp.Models
+{
+    public class EditProfileViewModel
+    {
+        public string Description { get; set; }
+        public HttpPostedFileBase ProfileImage { get; set; }
+
+    }
+}
