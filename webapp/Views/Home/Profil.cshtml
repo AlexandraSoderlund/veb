@@ -1,4 +1,6 @@
 ﻿@model Datalager.Models.Profile
+@*@model webapp.Models.EditProfileViewModel*@
+
 @{
     ViewBag.Title = "Min profilsida";
 }
@@ -12,13 +14,37 @@
 
 <h4> Beskrivning om mig </h4>
 
+@*@Html.TextAreaFor(x => x.LoggText, new { @class = "form-control", @cols = "", @rows = 6 })*@
 <div class="form-group">
     <label for="post">skicka ett inlägg</label>
     <textarea class="form-control" rows="5" id="comment"></textarea>
-    <button type="button" class="btn btn-success">Skicka</button>
+    <button type="button" class="btn btn-success" @*onclick="skickaKnapp()*@>Skicka</button>
+    <p id="show"></p>
+
+
+    @*function skickaKnapp()
+        {
+        var x = document.getElementById("comment").value;
+        document.getElementById("show").innerHTML = x;
+        }*@
+
+
+
+    @*id="skickaknapp"*@
+    @*$('#skickaknapp').click(function() {
+        $('#comment').html($('textarea').val().replace(/\n/g, '<br>'));
+        });>*@
 
 </div>
 
 @*@Model.Description*@
+
+
+
+@*//truncate result if <br>
+    $('#preview').click(function() {
+     var thesplit = $('#results').html().split('<br>');
+     $('#results').empty().html(thesplit[0] + ' ... ');
+    });*@
 
 
