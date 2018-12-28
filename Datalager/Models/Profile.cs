@@ -9,6 +9,7 @@ namespace Datalager.Models
 
         public string ProfileImageUrl { get; set; }
         public string Description { get; set; }
+        public string Favoritkaka { get; set; }
         public string UserId { get; set; }
 
 
