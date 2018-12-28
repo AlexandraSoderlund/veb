@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,11 +27,28 @@ namespace webapp.Controllers
                 }
 
                 profile.Description = model.Description;
+                profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
+
+                SaveProfileImage(model);
+
                 db.SaveChanges();
                 ViewBag.StatusMessage = "Dina ändringar är sparade";
+                model.ProfileImageUrl = profile.ProfileImageUrl;
                 
                 return View("~/Views/Manage/Index.cshtml", model);
             }
         }
+
+        public void SaveProfileImage(EditProfileViewModel model) {
+            var imageFolder = Server.MapPath("~/profilbilder");
+
+            if (!Directory.Exists(imageFolder)) {
+                Directory.CreateDirectory(imageFolder);
+            }
+            model.ProfileImage.SaveAs( imageFolder + "/" + model.ProfileImage.FileName);
+
+        }
     }
+
+
 }
