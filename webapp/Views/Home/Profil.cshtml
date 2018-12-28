@@ -1,9 +1,21 @@
 ﻿@model Datalager.Models.Profile
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Min profilsida";
 }
-<h2>@ViewBag.Title.</h2>
+
 <h3>@ViewBag.Message</h3>
+
+<img src="~/bilder/love.jpg" alt="kakan" />
+
+<h2>massa beskrivning om personen som ska vara kopplat till redigeringssidan</h2>
+
+
+<div class="form-group">
+    <label for="post">skicka ett inlägg</label>
+    <textarea class="form-control" rows="5" id="comment"></textarea>
+    <button type="button" class="btn btn-success">Skicka</button>
+
+</div>
 
 @*@Model.Description*@
 
