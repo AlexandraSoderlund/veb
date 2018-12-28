@@ -1,10 +1,7 @@
 ﻿using Datalager;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using webapp.Models;
 
@@ -27,9 +24,9 @@ namespace webapp.Controllers
                 }
 
                 profile.Description = model.Description;
+
                 if (model.ProfileImage != null) {
                     profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
-
 
                     SaveProfileImage(model);
                 }
