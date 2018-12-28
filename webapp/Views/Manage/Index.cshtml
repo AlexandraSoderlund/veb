@@ -1,28 +1,28 @@
 ﻿@model webapp.Models.EditProfileViewModel
 
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+
 <div>
     <h4>Ändra dina profilinställningar</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-                @Html.ActionLink("Change your password", "ChangePassword")
-        </dd>
 
-    </dl>
-    @using(Html.BeginForm("SaveProfile", "Profile", FormMethod.Post)){
-    <h4> Beskrivning </h4>
-    <textarea rows="12" cols="100">Jag är glad mumsare på 35 jordsnurr.. </textarea>
-    @Html.TextArea("Description", Model.Description)
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Spara" class="btn btn-default" />
+    @using (Html.BeginForm("SaveProfile", "Profile", FormMethod.Post))
+    {
+        <div class="edit-profile-container">
+            <h4> Beskrivning </h4>
+            @Html.TextArea("Description", Model.Description, new { @class = "form-control", @cols = "", @rows = 6 })
+            <div class="form-group">
+                <input type="submit" value="Spara" class="btn btn-default pull-right mt10" />
+                <div class="clearfix"></div>
+            </div>
+            <p class="text-success">@ViewBag.StatusMessage</p>
         </div>
+    }
+    <div class="mt10">
+        @Html.ActionLink("Change your password", "ChangePassword")
     </div>
 
-    }
+
 
 
 </div>
