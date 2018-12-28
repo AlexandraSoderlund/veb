@@ -11,6 +11,7 @@ namespace webapp.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Profil()
         {
             ViewBag.Message = " Din profil sida";
