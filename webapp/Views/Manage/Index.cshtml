@@ -6,11 +6,13 @@
     <h4>Ändra dina profilinställningar</h4>
     <hr />
 
-    @using (Html.BeginForm("SaveProfile", "Profile", FormMethod.Post))
+    @using (Html.BeginForm("SaveProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="edit-profile-container">
+            <h4>Profilbild</h4>
+            @Html.TextBoxFor(x => x.ProfileImage, new { Type = "File" })
             <h4> Beskrivning </h4>
-            @Html.TextArea("Description", Model.Description, new { @class = "form-control", @cols = "", @rows = 6 })
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @cols = "", @rows = 6 })
             <div class="form-group">
                 <input type="submit" value="Spara" class="btn btn-default pull-right mt10" />
                 <div class="clearfix"></div>
