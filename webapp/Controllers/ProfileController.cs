@@ -27,14 +27,19 @@ namespace webapp.Controllers
                 }
 
                 profile.Description = model.Description;
-                profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
+                if (model.ProfileImage != null) {
+                    profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
 
-                SaveProfileImage(model);
+
+                    SaveProfileImage(model);
+                }
 
                 db.SaveChanges();
                 ViewBag.StatusMessage = "Dina ändringar är sparade";
                 model.ProfileImageUrl = profile.ProfileImageUrl;
-                
+
+
+
                 return View("~/Views/Manage/Index.cshtml", model);
             }
         }
