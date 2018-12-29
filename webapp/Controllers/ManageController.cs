@@ -73,6 +73,7 @@ namespace webapp.Controllers
                 {
                     viewModel.Description = profile.Description;
                     viewModel.ProfileImageUrl = profile.ProfileImageUrl;
+                    viewModel.Favoritkaka = profile.Favoritkaka;
                 }
 
                 return View(viewModel);
