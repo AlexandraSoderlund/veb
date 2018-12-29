@@ -76,9 +76,19 @@ namespace webapp.Models
         public string Lösenord { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Bekräftalösenord")]
+        [Display(Name = "Bekräfta lösenord")]
         [Compare("Lösenord", ErrorMessage = "Lösenordet matchar inte med det bekräftade lösenordet.")]
         public string Bekräftalösenord { get; set; }
+
+        [Required]
+        public string Namn { get; set; }
+
+        [Required]
+        [Display(Name = "Beskrivning")]
+        public string Description { get; set; }
+
+        [Required]
+        public string Favoritkaka { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -1,4 +1,6 @@
 ﻿using Datalager;
+using Microsoft.AspNet.Identity;
+using System.Linq;
 using System.Web.Mvc;
 using webapp.Models;
 
@@ -17,9 +19,11 @@ namespace webapp.Controllers
             ViewBag.Message = " Din profil sida";
             using (var db = new DejtDbContext())
             {
-                //hämta profil här
+                var userId = User.Identity.GetUserId();
+                var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
+                return View(profile);
             }
-            return View();
+   
 
         }
 

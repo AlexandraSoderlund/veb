@@ -1,5 +1,4 @@
 ﻿@model Datalager.Models.Profile
-@*@model webapp.Models.EditProfileViewModel*@
 
 @{
     ViewBag.Title = "Min profilsida";
@@ -7,12 +6,20 @@
 
 <h3>@ViewBag.Message</h3>
 
-<img src="~/bilder/love.jpg" alt="kakan" />
+@if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+{
+    <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+}
+else
+{
+    <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+}
 
-<h2>massa beskrivning om personen som ska vara kopplat till redigeringssidan</h2>
-
+<h4>@Model.Namn</h4>
 
 <h4> Beskrivning om mig </h4>
+<div>@Model.Description</div>
+
 
 @*@Html.TextAreaFor(x => x.LoggText, new { @class = "form-control", @cols = "", @rows = 6 })*@
 <div class="form-group">
