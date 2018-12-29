@@ -40,10 +40,40 @@ namespace webapp.Models
     {
         protected override void Seed(DejtDbContext context)
         {
-            SeedUsers(context);
+            SeedUsers();
+            SeedProfiles(context);
         }
 
-        public void SeedUsers(DejtDbContext dejtDbContext)
+        public void SeedUsers()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var users = new List<ApplicationUser>
+                {
+                    new ApplicationUser{ Email = "test1@karleksmums.se" },
+                    new ApplicationUser{ Email = "test2@karleksmums.se" },
+                    new ApplicationUser{ Email = "test3@karleksmums.se" },
+                    new ApplicationUser{ Email = "test4@karleksmums.se" },
+                    new ApplicationUser{ Email = "test5@karleksmums.se" },
+                };
+
+                var hasTestanvändareSkapats = context.Users.Any(dbUser => dbUser.Email == "test1@karleksmums.se");
+
+                if(hasTestanvändareSkapats == false)
+                {
+                    var store = new UserStore<ApplicationUser>(context);
+                    var manager = new UserManager<ApplicationUser>(store);
+
+                    foreach (var u in users)
+                    {
+                        u.UserName = u.Email;
+                        var result = manager.Create(u, "Test1!");
+                    }
+                }
+            }
+        }
+
+        public void SeedProfiles(DejtDbContext dejtDbContext)
         {
             using (var userDatabaseContext = new ApplicationDbContext())
             {
