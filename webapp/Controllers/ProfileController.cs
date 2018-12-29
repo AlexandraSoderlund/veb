@@ -24,6 +24,8 @@ namespace webapp.Controllers
                 }
 
                 profile.Description = model.Description;
+                profile.Namn = model.Namn;
+                profile.Favoritkaka = model.Favoritkaka;
 
                 if (model.ProfileImage != null) {
                     profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;

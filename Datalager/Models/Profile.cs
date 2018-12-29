@@ -11,6 +11,7 @@ namespace Datalager.Models
         public string Description { get; set; }
         public string Favoritkaka { get; set; }
         public string UserId { get; set; }
+        public string Namn { get; set; }
 
 
     }

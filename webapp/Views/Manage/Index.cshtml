@@ -17,6 +17,8 @@
             <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
         }
         @Html.TextBoxFor(x => x.ProfileImage, new { Type = "File", @class = "mt10" })
+        <h4>Namn</h4>
+        @Html.TextBoxFor(x => x.Namn, new { @class = "form-control", @cols = ""})
         <h4> Favoritkaka </h4>
         @Html.TextBoxFor(x=> x.Favoritkaka, new { @class = "form-control", @cols = "" })  
 

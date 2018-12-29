@@ -74,6 +74,7 @@ namespace webapp.Controllers
                     viewModel.Description = profile.Description;
                     viewModel.ProfileImageUrl = profile.ProfileImageUrl;
                     viewModel.Favoritkaka = profile.Favoritkaka;
+                    viewModel.Namn = profile.Namn;
                 }
 
                 return View(viewModel);
