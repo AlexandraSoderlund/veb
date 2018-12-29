@@ -11,7 +11,7 @@ namespace webapp
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<DejtDbContext>());
+            Database.SetInitializer(new DejtDatabaseInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
