@@ -1,5 +1,6 @@
 ﻿@model Datalager.Models.Profile
-
+@*@model webapp.Models.EditProfileViewModel*@
+@using webapp.Models
 @{
     ViewBag.Title = "Min profilsida";
 }
@@ -20,38 +21,21 @@ else
 <h4> Beskrivning om mig </h4>
 <div>@Model.Description</div>
 
+<label for="post">skicka ett inlägg till <span>@Model.Namn</span>  </label>
+<div>
+@Html.TextAreaFor(x => x.LoggText, new { @class = "form-control", @cols = "", @rows = 6 })
 
-@*@Html.TextAreaFor(x => x.LoggText, new { @class = "form-control", @cols = "", @rows = 6 })*@
-<div class="form-group">
-    <label for="post">skicka ett inlägg</label>
-    <textarea class="form-control" rows="5" id="comment"></textarea>
-    <button type="button" class="btn btn-success" @*onclick="skickaKnapp()*@>Skicka</button>
-    <p id="show"></p>
-
-
-    @*function skickaKnapp()
-        {
-        var x = document.getElementById("comment").value;
-        document.getElementById("show").innerHTML = x;
-        }*@
-
-
-
-    @*id="skickaknapp"*@
-    @*$('#skickaknapp').click(function() {
-        $('#comment').html($('textarea').val().replace(/\n/g, '<br>'));
-        });>*@
-
+    <button type="button" class="btn btn-success">Skicka</button>
+    <div class="clearfix"></div>
 </div>
 
-@*@Model.Description*@
+<div>@Model.LoggText</div>
 
 
 
-@*//truncate result if <br>
-    $('#preview').click(function() {
-     var thesplit = $('#results').html().split('<br>');
-     $('#results').empty().html(thesplit[0] + ' ... ');
-    });*@
+    
+
+
+
 
 

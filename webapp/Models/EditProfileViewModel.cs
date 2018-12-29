@@ -9,7 +9,7 @@ namespace webapp.Models
         public string ProfileImageUrl { get; set; }
         public string Favoritkaka { get; set; }
         public string Namn { get; set; }
-        //public string LoggText { get; set; }
+        public string LoggText { get; set; }
 
     }
 }
