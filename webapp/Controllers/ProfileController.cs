@@ -18,7 +18,8 @@ namespace webapp.Controllers
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
 
-                if (profile == null) {
+                if (profile == null)
+                {
                     profile = new Datalager.Models.Profile();
                     profile.UserId = userId;
                     db.Profiles.Add(profile);
@@ -28,7 +29,8 @@ namespace webapp.Controllers
                 profile.Namn = model.Namn;
                 profile.Favoritkaka = model.Favoritkaka;
 
-                if (model.ProfileImage != null) {
+                if (model.ProfileImage != null)
+                {
                     profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
 
                     SaveProfileImage(model);
@@ -44,16 +46,19 @@ namespace webapp.Controllers
             }
         }
 
-        public void SaveProfileImage(EditProfileViewModel model) {
+        public void SaveProfileImage(EditProfileViewModel model)
+        {
             var imageFolder = Server.MapPath("~/profilbilder");
 
-            if (!Directory.Exists(imageFolder)) {
+            if (!Directory.Exists(imageFolder))
+            {
                 Directory.CreateDirectory(imageFolder);
             }
-            model.ProfileImage.SaveAs( imageFolder + "/" + model.ProfileImage.FileName);
+            model.ProfileImage.SaveAs(imageFolder + "/" + model.ProfileImage.FileName);
 
         }
     }
+};
 
     //controller för sökavänner
     //public ActionResult Vänner(string searchName)
