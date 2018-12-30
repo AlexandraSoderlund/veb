@@ -90,20 +90,4 @@ namespace webapp.Controllers
     }
 };
 
-//controller för sökavänner
-//public ActionResult Vänner(string searchName)
-//{
-//    using (var db = new DejtDbContext())
 
-
-//        var profiles = db.Profiles;
-
-
-//    if (!String.IsNullOrEmpty(searchName))
-//    {
-//        profiles = profiles.Where(p => p.Namn.Contains(searchName) || p.Name.Contains(searchName));
-//    }
-
-//    return View("Vänner".ToList());
-
-//}

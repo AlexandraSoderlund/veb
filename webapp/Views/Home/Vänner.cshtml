@@ -1,4 +1,6 @@
-﻿@{
+﻿@model webapp.Models.ProfileViewModel
+
+@{
     ViewBag.Title = "Vänner";
 }
 
@@ -10,11 +12,29 @@
 
 
     <div class="input-group">
-        @Html.TextBox("SearchString", null, new { @class = "form-control" })
+        @Html.TextBox("searchName", null, new { @class = "form-control" })
         <span class="input-group-btn">
             <button class="btn btn-default" type="button">Sök!</button>
         </span>
+        <div class="clearfix"></div>
+        @if (Model.Namn is null)
+        {
+            throw new HttpException(404, ("finns ingen mumsare vid det namnet")); }
+
+
+        else
+        {
+            foreach (var item in Model.Namn)
+            { @item}
+        }
     </div>
+
+
+
+
+
+
+
     <div class="form-group">
         <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
         <div class="clearfix"></div>
