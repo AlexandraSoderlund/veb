@@ -1,7 +1,9 @@
 ﻿@model webapp.Models.IndexExempelAnvändareViewModel
 
 @{
-    ViewBag.Title = "Kärleksmums";
+                /**/
+
+                ViewBag.Title = "Kärleksmums";
 }
 
 <div class="jumbotron">
@@ -11,14 +13,14 @@
 <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag! </h4>
 <img src="~/bilder/love.jpg" alt="kakan" />
 
-<h4> Exempel på andra användare </h4>
+<h4> Exempel på andra mumsiga användare </h4>
 
-    @foreach (var användare in Model.Profiles)
-    {
-        <p>@Html.ActionLink(@användare.Namn, "profil") </p> <hr/>
-        <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
-
-    }
+@foreach (var användare in Model.Profiles)
+{
+    <p>@Html.ActionLink(@användare.Namn, "profil") </p>
+    <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
+    <hr />
+}
 
 
 
