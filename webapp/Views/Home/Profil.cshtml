@@ -3,51 +3,53 @@
 @{
     ViewBag.Title = "Min profilsida";
 }
+<div class="dejt-container">
 
-<h3>@ViewBag.Message</h3>
-
-@using (Html.BeginForm("SavePost", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div>
-        @Html.HiddenFor(x => x.Id)
-    </div>
-
-    if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
-    {
-        <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
-    }
-    else
-    {
-        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-    }
-
-    <h4>@Model.Namn</h4>
-    <div>@Model.Description</div>
-
-    <div class="mt10">
-        <label for="post">Skriv ett inlägg på @Model.Namn profil </label>
-    </div>
-
-    <div>
-        @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6 })
-
-        <button type="submit" class="btn btn-primary pull-right mt10">Skicka</button>
-        <div class="clearfix"></div>
-    </div>
-
-
-    foreach (var post in Model.MottagarePosts)
+    @using (Html.BeginForm("SavePost", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
+            @Html.HiddenFor(x => x.Id)
+        </div>
+        <h2>Din profil.</h2>
+        <hr />
+
+        if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+        {
+            <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+        }
+        else
+        {
+            <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+        }
+
+        <h4>@Model.Namn</h4>
+        <div>@Model.Description</div>
+
+
+        <h4> Inlägg </h4>
+        <div>
+            @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6, @placeholder = "Skriv något till " + @Model.Namn + "..."  })
+
+            <button type="submit" class="btn btn-primary pull-right mt10">Skicka</button>
+            <div class="clearfix"></div>
+        </div>
+
+
+        foreach (var post in Model.MottagarePosts)
+        {
+        <div>
+            <div class="bold">
+                @post.AvsändareNamn
+            </div>
             <div>
                 @post.Text
             </div>
-            <div>
-                @post.AvsändareNamn
-            </div>
+
         </div>
+        }
+
     }
-}
+</div>
 
 
 

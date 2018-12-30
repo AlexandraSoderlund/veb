@@ -16,7 +16,7 @@
     white-space: normal;
 }
 
-.edit-profile-container {
+.dejt-container {
     width: 400px;
 }
 
@@ -25,5 +25,10 @@
 }
 
 .profile-pic {
-    width: 200px;
+    width: 240px;
+    border-radius: 50%;
+}
+
+.bold {
+    font-weight: bold;
 }
