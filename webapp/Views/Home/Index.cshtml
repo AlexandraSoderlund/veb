@@ -1,4 +1,6 @@
-﻿@{
+﻿@model webapp.Models.IndexExempelAnvändareViewModel
+
+@{
     ViewBag.Title = "Kärleksmums";
 }
 
@@ -8,6 +10,20 @@
 </div>
 <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag! </h4>
 <img src="~/bilder/love.jpg" alt="kakan" />
+
+<h4> Exempel på andra användare </h4>
+<table>
+    @foreach (var användare in Model.Profiles)
+    {
+    <tr>
+        
+        <td>    profil.namn </td>
+        <td> profil.Favoritkaka </td>
+
+    </tr>
+    }
+
+</table>
 
 
 @*@Html.ActionLink("Exempelprofil", "Exprofil", "ExempelProfil")*@

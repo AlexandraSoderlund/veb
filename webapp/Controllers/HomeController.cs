@@ -1,4 +1,5 @@
 ﻿using Datalager;
+using Datalager.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,7 +11,13 @@ namespace webapp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var db = new DejtDbContext())
+            {
+                var v = new IndexExempelAnvändareViewModel();
+                v.Profiles = db.Profiles.ToList();
+
+                return View(v);
+            }
         }
 
         [Authorize]
