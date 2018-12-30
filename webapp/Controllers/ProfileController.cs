@@ -1,9 +1,11 @@
 ﻿using Datalager;
+using Datalager.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using webapp.Helper;
 using webapp.Models;
 
 namespace webapp.Controllers
@@ -11,6 +13,34 @@ namespace webapp.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+        [HttpPost]
+        public ActionResult SavePost(ProfileViewModel viewModel)
+        {
+            using (var db = new DejtDbContext())
+            {
+                var userId = User.Identity.GetUserId();
+                var mottagareProfile = db.Profiles.Single(x => x.Id == viewModel.Id);
+                var avsändareProfile = db.Profiles.Single(x => x.UserId == userId);
+
+                var post = new Post();
+                post.Avsändare = avsändareProfile;
+                post.Mottagare = mottagareProfile;
+                post.Text = viewModel.NyPostText;
+
+                mottagareProfile.MottagarePosts.Add(post);
+                avsändareProfile.AvsändarePosts.Add(post);
+
+                db.Posts.Add(post);
+
+                db.SaveChanges();
+
+                var updatedViewModel = ProfileHelper.GetProfileViewModel(mottagareProfile.Id);
+
+                return View("~/Views/Home/Profil.cshtml", updatedViewModel);
+            }
+        }
+
+        [HttpPost]
         public ActionResult SaveProfile(EditProfileViewModel model)
         {
             using (var db = new DejtDbContext())
@@ -60,20 +90,20 @@ namespace webapp.Controllers
     }
 };
 
-    //controller för sökavänner
-    //public ActionResult Vänner(string searchName)
-    //{
-    //    using (var db = new DejtDbContext())
+//controller för sökavänner
+//public ActionResult Vänner(string searchName)
+//{
+//    using (var db = new DejtDbContext())
 
 
-    //        var profiles = db.Profiles;
+//        var profiles = db.Profiles;
 
-    
-    //    if (!String.IsNullOrEmpty(searchName))
-    //    {
-    //        profiles = profiles.Where(p => p.Namn.Contains(searchName) || p.Name.Contains(searchName));
-    //    }
-        
-    //    return View("Vänner".ToList());
 
-    //}
+//    if (!String.IsNullOrEmpty(searchName))
+//    {
+//        profiles = profiles.Where(p => p.Namn.Contains(searchName) || p.Name.Contains(searchName));
+//    }
+
+//    return View("Vänner".ToList());
+
+//}

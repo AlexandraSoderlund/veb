@@ -1,42 +1,56 @@
-﻿@model Datalager.Models.Profile
-@*@model webapp.Models.EditProfileViewModel*@
-@using webapp.Models
+﻿@model webapp.Models.ProfileViewModel
+
 @{
     ViewBag.Title = "Min profilsida";
 }
 
 <h3>@ViewBag.Message</h3>
 
-@if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+@using (Html.BeginForm("SavePost", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+    <div>
+        @Html.HiddenFor(x => x.Id)
+    </div>
+
+    if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+    {
+        <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+    }
+    else
+    {
+        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+    }
+
+    <h4>@Model.Namn</h4>
+    <div>@Model.Description</div>
+
+    <div class="mt10">
+        <label for="post">Skriv ett inlägg på @Model.Namn profil </label>
+    </div>
+
+    <div>
+        @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6 })
+
+        <button type="submit" class="btn btn-primary pull-right mt10">Skicka</button>
+        <div class="clearfix"></div>
+    </div>
+
+
+    foreach (var post in Model.MottagarePosts)
+    {
+        <div>
+            <div>
+                @post.Text
+            </div>
+            <div>
+                @post.AvsändareNamn
+            </div>
+        </div>
+    }
 }
-else
-{
-    <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-}
-
-<h4>@Model.Namn</h4>
-
-<h4> Beskrivning om mig </h4>
 
 
 
-<div>@Model.Description</div>
-
-<label for="post">skicka ett inlägg till <span>@Model.Namn</span>  </label>
-<div>
-@Html.TextAreaFor(x => x.LoggText, new { @class = "form-control", @cols = "", @rows = 6 })
-
-    <button type="button" class="btn btn-success">Skicka</button>
-    <div class="clearfix"></div>
-</div>
-
-<div>@Model.LoggText</div>
-
-
-
-    
 
 
 

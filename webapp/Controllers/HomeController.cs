@@ -3,6 +3,7 @@ using Datalager.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
+using webapp.Helper;
 using webapp.Models;
 
 namespace webapp.Controllers
@@ -28,7 +29,8 @@ namespace webapp.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
-                return View(profile);
+                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
+                return View(profileViewModel);
             }
    
 
