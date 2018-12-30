@@ -12,21 +12,15 @@
 <img src="~/bilder/love.jpg" alt="kakan" />
 
 <h4> Exempel på andra användare </h4>
-<table>
+
     @foreach (var användare in Model.Profiles)
     {
-    <tr>
-        
-        <td>   @Html.ActionLink(@användare.Namn, "profil")</td>
-        
-      
-
-    </tr>
-
+        <p>@Html.ActionLink(@användare.Namn, "profil") </p> <hr/>
+        <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
 
     }
 
-</table>
+
 
 
 @*@Html.ActionLink("Exempelprofil", "Exprofil", "ExempelProfil")*@
