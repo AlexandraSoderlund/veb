@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Min profilsida";
 }
+<h2>Din profil.</h2>
+<hr />
 <div class="dejt-container">
 
     @using (Html.BeginForm("SavePost", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -10,8 +12,7 @@
         <div>
             @Html.HiddenFor(x => x.Id)
         </div>
-        <h2>Din profil.</h2>
-        <hr />
+
 
         if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
         {
@@ -28,7 +29,7 @@
 
         <h4> Inlägg </h4>
         <div>
-            @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6, @placeholder = "Skriv något till " + @Model.Namn + "..."  })
+            @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6, @placeholder = "Skriv något till " + @Model.Namn + "..." })
 
             <button type="submit" class="btn btn-primary pull-right mt10">Skicka</button>
             <div class="clearfix"></div>
@@ -37,15 +38,15 @@
 
         foreach (var post in Model.MottagarePosts)
         {
-        <div>
-            <div class="bold">
-                @post.AvsändareNamn
-            </div>
             <div>
-                @post.Text
-            </div>
+                <div class="bold">
+                    @post.AvsändareNamn
+                </div>
+                <div>
+                    @post.Text
+                </div>
 
-        </div>
+            </div>
         }
 
     }
