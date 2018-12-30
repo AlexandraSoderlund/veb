@@ -58,7 +58,7 @@ namespace webapp.Models
         [Display(Name = "Lösenord")]
         public string Lösenord { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Kom ihåg mig?")]
         public bool RememberMe { get; set; }
     }
 
