@@ -17,7 +17,7 @@
             <button class="btn btn-default" type="button">Sök!</button>
         </span>
         <div class="clearfix"></div>
-        @if (Model.Namn is null)
+        @if (Model.Namn == null)
         {
             throw new HttpException(404, ("finns ingen mumsare vid det namnet")); }
 
