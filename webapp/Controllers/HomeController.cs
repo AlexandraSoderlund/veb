@@ -32,8 +32,6 @@ namespace webapp.Controllers
                 var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
                 return View(profileViewModel);
             }
-   
-
         }
 
         public ActionResult Vänner()

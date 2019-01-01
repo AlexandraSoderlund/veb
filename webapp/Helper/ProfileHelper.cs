@@ -17,11 +17,14 @@ namespace webapp.Helper
 
                 var profileViewModel = new ProfileViewModel();
                 profileViewModel.Id = profile.Id;
-                profileViewModel.MottagarePosts = profile.MottagarePosts.Select(x => new PostViewModel
-                {
-                    AvsändareNamn = x.Avsändare.Namn,
-                    Text = x.Text,
-                }).ToList();
+                profileViewModel.MottagarePosts = profile.MottagarePosts
+                    .OrderByDescending(x => x.Id)
+                    .Select(x => new PostViewModel
+                    {
+                        AvsändareNamn = x.Avsändare.Namn,
+                        Text = x.Text,
+                    })
+                    .ToList();
                 profileViewModel.Namn = profile.Namn;
                 profileViewModel.Description = profile.Description;
                 profileViewModel.Favoritkaka = profile.Favoritkaka;

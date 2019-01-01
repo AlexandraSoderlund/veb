@@ -7,50 +7,58 @@
 <hr />
 <div class="dejt-container">
 
-    @using (Html.BeginForm("SavePost", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+    {
+        <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+    }
+    else
+    {
+        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+    }
+
+    <h4>@Model.Namn</h4>
+    <div>@Model.Description</div>
+    <div>
+        @Html.HiddenFor(x => x.Id, new { @id = "profilIdHidden"})
+    </div>
+
+    <h4> Inlägg </h4>
+    <div>
+        <textarea id="nyPostTextBox" class="form-control" rows="6" placeholder="Skriv något till  @Model.Namn"></textarea>
+        <button id="savePostButton" type="button" class="btn btn-primary pull-right mt10">Skicka</button>
+        <div class="clearfix"></div>
+    </div>
+
+
+    @foreach (var post in Model.MottagarePosts)
     {
         <div>
-            @Html.HiddenFor(x => x.Id)
-        </div>
-
-
-        if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
-        {
-            <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
-        }
-        else
-        {
-            <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-        }
-
-        <h4>@Model.Namn</h4>
-        <div>@Model.Description</div>
-
-
-        <h4> Inlägg </h4>
-        <div>
-            @Html.TextAreaFor(x => x.NyPostText, new { @class = "form-control", @cols = "", @rows = 6, @placeholder = "Skriv något till " + @Model.Namn + "..." })
-
-            <button type="submit" class="btn btn-primary pull-right mt10">Skicka</button>
-            <div class="clearfix"></div>
-        </div>
-
-
-        foreach (var post in Model.MottagarePosts)
-        {
-            <div>
-                <div class="bold">
-                    @post.AvsändareNamn
-                </div>
-                <div>
-                    @post.Text
-                </div>
-
+            <div class="bold">
+                @post.AvsändareNamn
             </div>
-        }
+            <div>
+                @post.Text
+            </div>
 
+        </div>
     }
+
+
+
 </div>
+
+<script type="text/javascript">
+    document.getElementById("savePostButton").addEventListener("click", function () {
+        var mottagareId = document.getElementById("profilIdHidden").value;
+        var text = document.getElementById("nyPostTextBox").value;
+        $.post('/api/profilepost/savepost', { MottagareId: mottagareId, Text: text }, function (response) {
+            location.reload();
+        });
+    });
+
+   
+</script>
 
 
 

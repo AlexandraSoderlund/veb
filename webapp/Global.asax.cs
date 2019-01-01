@@ -1,5 +1,4 @@
-﻿using Datalager;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -14,6 +13,8 @@ namespace webapp
             Database.SetInitializer(new DejtDatabaseInitializer());
 
             AreaRegistration.RegisterAllAreas();
+            System.Web.Http.GlobalConfiguration.Configure(WebApiConfig.Register);
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

@@ -13,32 +13,6 @@ namespace webapp.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        [HttpPost]
-        public ActionResult SavePost(ProfileViewModel viewModel)
-        {
-            using (var db = new DejtDbContext())
-            {
-                var userId = User.Identity.GetUserId();
-                var mottagareProfile = db.Profiles.Single(x => x.Id == viewModel.Id);
-                var avsändareProfile = db.Profiles.Single(x => x.UserId == userId);
-
-                var post = new Post();
-                post.Avsändare = avsändareProfile;
-                post.Mottagare = mottagareProfile;
-                post.Text = viewModel.NyPostText;
-
-                mottagareProfile.MottagarePosts.Add(post);
-                avsändareProfile.AvsändarePosts.Add(post);
-
-                db.Posts.Add(post);
-
-                db.SaveChanges();
-
-                var updatedViewModel = ProfileHelper.GetProfileViewModel(mottagareProfile.Id);
-
-                return View("~/Views/Home/Profil.cshtml", updatedViewModel);
-            }
-        }
 
         [HttpPost]
         public ActionResult SaveProfile(EditProfileViewModel model)
