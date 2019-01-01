@@ -38,6 +38,8 @@ namespace webapp.Models
 
     public class DejtDatabaseInitializer : DropCreateDatabaseAlways<DejtDbContext>
     {
+        private Random rand = new Random();
+
         protected override void Seed(DejtDbContext context)
         {
             SeedUsers();
@@ -59,7 +61,7 @@ namespace webapp.Models
 
                 var hasTestanvändareSkapats = context.Users.Any(dbUser => dbUser.Email == "test1@karleksmums.se");
 
-                if(hasTestanvändareSkapats == false)
+                if (hasTestanvändareSkapats == false)
                 {
                     var store = new UserStore<ApplicationUser>(context);
                     var manager = new UserManager<ApplicationUser>(store);
@@ -83,10 +85,50 @@ namespace webapp.Models
                 {
                     var profile = new Profile();
                     profile.UserId = u.Id;
-                    profile.Namn = GetRandomName();
-                    profile.Description = GetRandomBeskrivning();
-                    profile.Favoritkaka = GetRandomKaka();
-                    profile.ProfileImageUrl = "~/bilder/" + GetRandomImageUrl();
+
+                    if (u.Email == "test1@karleksmums.se")
+                    {
+                        profile.Namn = "Arne Kanelbulle";
+                        profile.Description = "Glad kärleksmumsare på 44 jordsnurr";
+                        profile.Favoritkaka = "Bulle";
+                        profile.ProfileImageUrl = "~/bilder/man-1150058_1920.jpg";
+                    }
+                    else if (u.Email == "test2@karleksmums.se")
+                    {
+                        profile.Namn = "Anna Rulltårta";
+                        profile.Description = "Fika is life";
+                        profile.Favoritkaka = "Tårta";
+                        profile.ProfileImageUrl = "~/bilder/girl-1722402_1920.jpg";
+                    }
+                    else if (u.Email == "test3@karleksmums.se")
+                    {
+                        profile.Namn = "Torsten Tårtspade";
+                        profile.Description = "En slät kopp kaffe duger inte för mig";
+                        profile.Favoritkaka = "Tårta";
+                        profile.ProfileImageUrl = "~/bilder/man-1245658_1920.jpg";
+                    }
+                    else if (u.Email == "test4@karleksmums.se")
+                    {
+                        profile.Namn = "Helena Helgräddarn";
+                        profile.Description = "Behöver kärleksmums";
+                        profile.Favoritkaka = "Snickerskaka";
+                        profile.ProfileImageUrl = "~/bilder/running-573762_1920.jpg";
+                    }
+                    else if (u.Email == "test5@karleksmums.se")
+                    {
+                        profile.Namn = "Henrik Hörnkaka";
+                        profile.Description = "Kanelbulle and chill";
+                        profile.Favoritkaka = "Kladdkaka";
+                        profile.ProfileImageUrl = "~/bilder/balloon-991680_1920.jpg";
+                    }
+                    else
+                    {
+                        profile.Namn = GetRandomName();
+                        profile.Description = GetRandomBeskrivning();
+                        profile.Favoritkaka = GetRandomKaka();
+                        profile.ProfileImageUrl = "~/bilder/" + GetRandomImageUrl();
+                    }
+                   
                     dejtDbContext.Profiles.Add(profile);
                 }
             }
@@ -98,13 +140,13 @@ namespace webapp.Models
         {
             var names = new List<string>
             {
-                "Arne Kanelbulle",
                 "Stina Bulleälskaren",
-                "Helena Helgräddarn",
-                "Anna Rulltårta",
-                "Henrik Hörnkaka",
-                "Torsten Tårtspade",
-                "Ludvig Lussebulle"
+                "Ludvig Lussebulle",
+                "Sanna Semla",
+                "Charlie Chokladboll",
+                "Daniel Dammsugare",
+                "Marie Mandelkubb",
+                "Jens Jordgubbssnitt"
             };
 
             return GetRandomFromList(names);
@@ -162,7 +204,6 @@ namespace webapp.Models
 
         private string GetRandomFromList(List<string> listOfStrings)
         {
-            var rand = new Random();
             var next = rand.Next(0, listOfStrings.Count - 1);
             return listOfStrings[next];
         }

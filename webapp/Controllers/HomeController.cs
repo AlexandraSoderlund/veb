@@ -1,5 +1,4 @@
 ﻿using Datalager;
-using Datalager.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
@@ -22,9 +21,8 @@ namespace webapp.Controllers
         }
 
         [Authorize]
-        public ActionResult Profil()
+        public ActionResult MinProfil()
         {
-            ViewBag.Message = " Din profil sida";
             using (var db = new DejtDbContext())
             {
                 var userId = User.Identity.GetUserId();
@@ -34,12 +32,27 @@ namespace webapp.Controllers
             }
         }
 
+        [Authorize]
+        public ActionResult Profil(int profileId)
+        {
+            using (var db = new DejtDbContext())
+            {
+                var profile = db.Profiles.SingleOrDefault(x => x.Id == profileId);
+                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
+                return View(profileViewModel);
+            }
+        }
+
         public ActionResult Vänner()
         {
             ViewBag.Message = "Här är dina vänner";
-            using(var db = new DejtDbContext())
+            using (var db = new DejtDbContext())
+            {
 
-            return View();
+                var friendsView = new FriendsViewModel();
+                return View(friendsView);
+            }
+
         }
 
 

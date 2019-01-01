@@ -215,6 +215,7 @@
     <Compile Include="Helper\ProfileHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
+    <Compile Include="Models\FriendsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexExempelAnvändareViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -299,6 +300,8 @@
       <BrowseToURL>~/Home/Profil</BrowseToURL>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\MinProfil.cshtml" />
+    <Content Include="Views\Home\ProfilPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

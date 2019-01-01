@@ -1,9 +1,9 @@
 ﻿@model webapp.Models.IndexExempelAnvändareViewModel
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Kärleksmums";
+    ViewBag.Title = "Kärleksmums";
 }
 
 <div class="jumbotron">
@@ -14,10 +14,21 @@
 
 @foreach (var användare in Model.Profiles)
 {
-    <p>@Html.ActionLink(@användare.Namn, "profil") </p>
-    <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
+    <p>
+        @Html.ActionLink(användare.Namn, "Profil", "Home", new { profileId = användare.Id }, null)
+    </p>
+
+    if (!string.IsNullOrEmpty(användare.ProfileImageUrl))
+    {
+        <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
+    }
+    else
+    {
+        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+    }
+
     <hr />
-    
+
 }
 
 

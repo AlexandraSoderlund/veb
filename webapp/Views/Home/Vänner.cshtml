@@ -1,4 +1,4 @@
-﻿@model webapp.Models.ProfileViewModel
+﻿@model webapp.Models.FriendsViewModel
 
 @{
     ViewBag.Title = "Vänner";
@@ -8,37 +8,46 @@
 <div class="dejt-container">
 
 
-    <h4>Sök nya mumsare!</h4>
+    <h4>Sök mumsare</h4>
 
+    @using (Html.BeginForm("Search", "SearchFriends", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="dejt-container">
+        <div class="row">
+            <div class="col-xs-8">
+                @Html.TextBoxFor(x => x.SearchText, new { @class = "mt10 form-control", @placeholder = "Sök på din favoritkaka..." })
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <input type="submit" value="Sök" class="btn btn-default pull-right mt10" />
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
 
-    <div class="input-group">
-        @Html.TextBox("searchName", null, new { @class = "form-control" })
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Sök!</button>
-        </span>
-        <div class="clearfix"></div>
-        @if (Model.Namn == null)
+        @foreach (var p in Model.Profiles)
         {
-            throw new HttpException(404, ("finns ingen mumsare vid det namnet")); }
+            if (!string.IsNullOrEmpty(p.ProfileImageUrl))
+            {
+                <img src="@Url.Content(p.ProfileImageUrl)" class="profile-pic" />
+            }
+            else
+            {
+                <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+            }
 
+            <div class="bold">
+                @Html.ActionLink(p.Namn, "Profil", "Home", new { profileId = p.Id }, null)
+            </div>
+            <div>
+                @p.Favoritkaka
+            </div>
 
-        else
-        {
-            foreach (var item in Model.Namn)
-            { @item}
         }
+
     </div>
+    }
 
-
-
-
-
-
-
-    <div class="form-group">
-        <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
-        <div class="clearfix"></div>
-    </div>
 </div>
 
 
