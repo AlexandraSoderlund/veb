@@ -21,9 +21,11 @@
                 <div class="form-group">
                     <input type="submit" value="Sök" class="btn btn-default pull-right mt10" />
                     <div class="clearfix"></div>
+
                 </div>
             </div>
         </div>
+        @Html.ValidationMessageFor(X=> X.SearchText, "", new { @class = "text-danger" })
 
         @foreach (var p in Model.Profiles)
         {
