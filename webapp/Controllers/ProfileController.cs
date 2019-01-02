@@ -2,6 +2,7 @@
 using Datalager.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -19,6 +20,7 @@ namespace webapp.Controllers
         {
             using (var db = new DejtDbContext())
             {
+
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
 
@@ -29,10 +31,6 @@ namespace webapp.Controllers
                     db.Profiles.Add(profile);
                 }
 
-                profile.Description = model.Description;
-                profile.Namn = model.Namn;
-                profile.Favoritkaka = model.Favoritkaka;
-
                 if (model.ProfileImage != null)
                 {
                     profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
@@ -40,10 +38,25 @@ namespace webapp.Controllers
                     SaveProfileImage(model);
                 }
 
-                db.SaveChanges();
-                ViewBag.StatusMessage = "Dina ändringar är sparade";
-                model.ProfileImageUrl = profile.ProfileImageUrl;
 
+                model.ProfileImageUrl = profile.ProfileImageUrl;
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        profile.Description = model.Description;
+                        profile.Namn = model.Namn;
+                        profile.Favoritkaka = model.Favoritkaka;
+
+                        db.SaveChanges();
+                        ViewBag.StatusMessage = "Dina ändringar är sparade";
+                    }
+                }
+                //Catchen fungerar inte, vet inte varför, ska man ha tryen över hela? 
+                //    Ändringarna ska inte sparas i databasen om valideringen är fel.
+                catch {
+                    throw new Exception("Kunde inte spara ändringar, försök igen");
+                }
 
 
                 return View("~/Views/Manage/Index.cshtml", model);
