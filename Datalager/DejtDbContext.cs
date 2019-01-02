@@ -7,6 +7,7 @@ namespace Datalager
     {
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<FriendsRequest> Förfrågan { get; set; }
 
 
         public DejtDbContext() : base("karleksmums")
@@ -24,6 +25,16 @@ namespace Datalager
             modelBuilder.Entity<Post>()
                 .HasRequired(s => s.Mottagare)
                 .WithMany(x => x.MottagarePosts)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<FriendsRequest>()
+                .HasRequired(s => s.Avsändare)
+                .WithMany(x => x.AvsändareFörfrågan)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<FriendsRequest>()
+                .HasRequired(s => s.Mottagare)
+                .WithMany(x => x.Mottagareförfrågan)
                 .WillCascadeOnDelete(false);
         }
 

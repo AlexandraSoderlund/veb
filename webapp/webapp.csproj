@@ -204,6 +204,7 @@
     <Compile Include="Controllers\App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FriendsRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -304,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\FriendsRequest\" />
     <Folder Include="Views\SearchFriends\" />
   </ItemGroup>
   <ItemGroup>

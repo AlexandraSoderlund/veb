@@ -9,6 +9,8 @@ namespace Datalager.Models
         {
             MottagarePosts = new List<Post>();
             AvsändarePosts = new List<Post>();
+            Mottagareförfrågan = new List<FriendsRequest>();
+            AvsändareFörfrågan = new List<FriendsRequest>();
         }
 
         [Key]
@@ -22,6 +24,8 @@ namespace Datalager.Models
 
         public virtual List<Post> MottagarePosts { get; set; }
         public virtual List<Post> AvsändarePosts { get; set; }
+        public virtual List<FriendsRequest> Mottagareförfrågan { get; set; }
+        public virtual List<FriendsRequest> AvsändareFörfrågan { get; set; }
 
     }
 }
