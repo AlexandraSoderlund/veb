@@ -106,7 +106,7 @@ namespace webapp.Models
                         profile.Description = "En slät kopp kaffe duger inte för mig";
                         profile.Favoritkaka = "Tårta";
                         profile.ProfileImageUrl = "~/bilder/man-1245658_1920.jpg";
-                    }
+                    } 
                     else if (u.Email == "test4@karleksmums.se")
                     {
                         profile.Namn = "Helena Helgräddarn";
