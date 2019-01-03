@@ -9,6 +9,7 @@ namespace webapp.Controllers
 {
     public class HomeController : Controller
     {
+        //Returnerar en IndexView som även visar en lista på Exempelanvändare
         public ActionResult Index()
         {
             using (var db = new DejtDbContext())
