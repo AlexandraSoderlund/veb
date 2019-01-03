@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webapp.Helper;
 using webapp.Models;
 
 namespace webapp.Controllers
@@ -34,8 +35,9 @@ namespace webapp.Controllers
                 db.Förfrågan.Add(Request);
 
                 db.SaveChanges();
+                var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id);
 
-                return View("~/Views/Home/Profil.cshtml", model);
+                return View("~/Views/Home/Profil.cshtml", uppdateradProfil);
 
 
             }

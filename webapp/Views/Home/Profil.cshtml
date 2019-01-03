@@ -13,18 +13,7 @@
     </div>
 }
 
-<div class="bold">
-    Dina vänförfrågningar
-</div>
-@foreach (var förfrågan in Model.FriendRequests)
-{
-    <div>
-        <div class="bold">
-            @förfrågan.Avsändare
-        </div>
-    </div>
-}
-@Html.Partial("ProfilPartial", Model)
+@Html.Partial("~/Views/Home/ProfilPartial.cshtml", Model)
 
 
 
