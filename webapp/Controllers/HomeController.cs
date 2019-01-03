@@ -21,6 +21,7 @@ namespace webapp.Controllers
             }
         }
 
+        //Returnerar en view med min profil
         [Authorize]
         public ActionResult MinProfil()
         {
@@ -33,6 +34,7 @@ namespace webapp.Controllers
             }
         }
 
+        //Tar emot ett profilId och returnerar en profileViewModel med en profil på en annan användare??
         [Authorize]
         public ActionResult Profil(int profileId)
         {

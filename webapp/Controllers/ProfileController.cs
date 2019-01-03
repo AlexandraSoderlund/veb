@@ -14,7 +14,7 @@ namespace webapp.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-
+        //Gör ändringar samt sparar ändringar som görs Manage Index vyn samt returnerar samma vy när man trycker på spara
         [HttpPost]
         public ActionResult SaveProfile(EditProfileViewModel model)
         {
@@ -62,6 +62,8 @@ namespace webapp.Controllers
                 return View("~/Views/Manage/Index.cshtml", model);
             }
         }
+
+        //Sparar en profilbild och kontrollerar om mappen med bilder finns
 
         public void SaveProfileImage(EditProfileViewModel model)
         {
