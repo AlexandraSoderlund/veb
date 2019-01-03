@@ -1,6 +1,6 @@
 ﻿using Datalager.Models;
 using System.Data.Entity;
-
+// skapat en egen databas
 namespace Datalager
 {
     public class DejtDbContext : DbContext
@@ -15,6 +15,7 @@ namespace Datalager
 
         }
 
+        // 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()

@@ -306,7 +306,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\FriendsRequest\" />
-    <Folder Include="Views\SearchFriends\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
