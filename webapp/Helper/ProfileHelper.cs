@@ -25,6 +25,15 @@ namespace webapp.Helper
                         Text = x.Text,
                     })
                     .ToList();
+                profileViewModel.FriendRequests = profile.Mottagareförfrågan
+                .OrderByDescending(x => x.Id)
+                .Select(x => new FriendsRequestViewModel
+                {
+                    Avsändare = x.Avsändare.Namn,
+                    Accepted = x.Accepted,
+                })
+                .ToList();
+
                 profileViewModel.Namn = profile.Namn;
                 profileViewModel.Description = profile.Description;
                 profileViewModel.Favoritkaka = profile.Favoritkaka;

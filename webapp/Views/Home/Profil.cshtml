@@ -6,6 +6,17 @@
     <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
     <div class="clearfix"></div>
 </div>
+<div class="bold">
+    Dina vänförfrågningar
+</div>
+@foreach (var förfrågan in Model.FriendRequests)
+{
+    <div>
+        <div class="bold">
+            @förfrågan.Avsändare
+        </div>
+    </div>
+}
 @Html.Partial("ProfilPartial", Model)
 
 

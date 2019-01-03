@@ -14,8 +14,6 @@ namespace webapp.Models
         public string NyPostText { get; set; }
 
         public virtual List<PostViewModel> MottagarePosts { get; set; }
-        public bool Accepted { get; set; }
-        public string Avsändare { get; set; }
-        public int Mottagare { get; set; }
+        public virtual List<FriendsRequestViewModel> FriendRequests { get; set; }
     }
 }

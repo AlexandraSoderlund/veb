@@ -12,9 +12,11 @@ namespace webapp.Controllers
 {
     public class FriendsRequestController : Controller
     {
+        // GET: FriendsRequest
         //hämtar en ProfileViewmodel och sätter fälten i FriendsRequest modelen 
         //till den datan som ProfileViewModel för den som klickar på skicka vänförfrågan..
-        public ActionResult SendRequest(ProfileViewModel model)
+
+        public ActionResult SendRequest(FriendsRequestViewModel model)
         { using (var db = new DejtDbContext())
             {
                 var userId = User.Identity.GetUserId();
@@ -22,9 +24,9 @@ namespace webapp.Controllers
                 var avsändare = db.Profiles.Single(x => x.UserId == userId);
 
                 var Request = new FriendsRequest();
-                var view = new ProfileViewModel();
                 Request.Avsändare = avsändare;
                 Request.Mottagare = mottagare;
+                Request.Accepted = false;
                 
                 mottagare.Mottagareförfrågan.Add(Request);
                 avsändare.AvsändareFörfrågan.Add(Request);
@@ -33,13 +35,11 @@ namespace webapp.Controllers
 
                 db.SaveChanges();
 
+                return View("~/Views/Home/Profil.cshtml", model);
 
 
             }
 
-
-
-                return View();
         }
     }
 }
