@@ -15,7 +15,7 @@ namespace Datalager
 
         }
 
-        // 
+        // Vi har 2 databaser, koden pekar på vilket fält som hör ihop med vad.
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()
