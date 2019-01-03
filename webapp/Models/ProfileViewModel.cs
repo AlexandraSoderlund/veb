@@ -5,6 +5,10 @@ namespace webapp.Models
 {
     public class ProfileViewModel
     {
+        public ProfileViewModel() {
+            FriendRequests = new List<FriendsRequestViewModel>();
+            MottagarePosts = new List<PostViewModel>();
+        }
         public int Id { get; set; }
         public string ProfileImageUrl { get; set; }
         public string Description { get; set; }
