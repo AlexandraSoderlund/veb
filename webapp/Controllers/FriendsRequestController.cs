@@ -13,6 +13,9 @@ namespace webapp.Controllers
     public class FriendsRequestController : Controller
     {
         // GET: FriendsRequest
+        //hämtar en ProfileViewmodel och sätter fälten i FriendsRequest modelen 
+        //till den datan som ProfileViewModel för den som klickar på skicka vänförfrågan..
+
         public ActionResult SendRequest(FriendsRequestViewModel model)
         { using (var db = new DejtDbContext())
             {

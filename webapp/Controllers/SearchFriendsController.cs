@@ -9,6 +9,7 @@ namespace webapp.Controllers
     public class SearchFriendsController : Controller
 
     {
+        //Tar in ett obejkt av FriendsViewModel och kollar om den Favoritkaka man skriver in matchar Favoritkakan i modelen
         [HttpPost]
         public ActionResult Search(FriendsViewModel model)
         {

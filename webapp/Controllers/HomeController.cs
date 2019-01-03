@@ -9,6 +9,7 @@ namespace webapp.Controllers
 {
     public class HomeController : Controller
     {
+        //Returnerar en IndexView som även visar en lista på Exempelanvändare
         public ActionResult Index()
         {
             using (var db = new DejtDbContext())
@@ -20,6 +21,7 @@ namespace webapp.Controllers
             }
         }
 
+        //Returnerar en view med min profil
         [Authorize]
         public ActionResult MinProfil()
         {
@@ -32,6 +34,7 @@ namespace webapp.Controllers
             }
         }
 
+        //Tar emot ett profilId och returnerar en profileViewModel med en profil på en annan användare??
         [Authorize]
         public ActionResult Profil(int profileId)
         {
