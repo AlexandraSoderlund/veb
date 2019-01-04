@@ -15,7 +15,10 @@ namespace Datalager
 
         }
 
-        // Vi har 2 databaser, koden pekar på vilket fält som hör ihop med vad.
+        // Här kan man hjälpa Entity Framework om hur databasen hänger ihop.
+        // I vårat fall är det omöjligt för Entity Framework att lista ut vilket 
+        // fält som hör till vilket eftersom vi har flera fält på till exempelvis Post som hör
+        // till användare
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()

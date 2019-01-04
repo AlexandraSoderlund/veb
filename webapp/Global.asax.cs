@@ -10,6 +10,7 @@ namespace webapp
     {
         protected void Application_Start()
         {
+            // Skapar upp databasen när applikationen startas
             Database.SetInitializer(new DejtDatabaseInitializer());
 
             AreaRegistration.RegisterAllAreas();

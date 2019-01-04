@@ -35,11 +35,15 @@ namespace webapp.Models
             return new ApplicationDbContext();
         }
     }
-
+    // Här är klassen som skapar vår databas och fyller den med testdata så att den inte är tom
+    // Databasen tas bort innan den skapas på nytt det gör vi får att databaschemat ska stämma om 
+    // vi gjort ändringar i vår modell.
     public class DejtDatabaseInitializer : DropCreateDatabaseAlways<DejtDbContext>
     {
         private Random rand = new Random();
 
+        //Den här metoden körs när databasen är skapad
+        // då fyller vi den med testdata.
         protected override void Seed(DejtDbContext context)
         {
             SeedUsers();

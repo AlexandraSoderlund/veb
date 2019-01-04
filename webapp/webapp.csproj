@@ -207,7 +207,7 @@
     <Compile Include="Controllers\FriendsRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProfilePostController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchFriendsController.cs" />
     <Compile Include="Global.asax.cs">

@@ -47,6 +47,7 @@
     document.getElementById("savePostButton").addEventListener("click", function () {
         var mottagareId = document.getElementById("profilIdHidden").value;
         var text = document.getElementById("nyPostTextBox").value;
+
         $.post('/api/profilepost/savepost', { MottagareId: mottagareId, Text: text }, function (response) {
             location.reload();
         });
