@@ -1,4 +1,5 @@
 ﻿using Datalager;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using webapp.Models;
@@ -14,16 +15,39 @@ namespace webapp.Controllers
         public ActionResult Search(FriendsViewModel model)
         {
             using (var db = new DejtDbContext())
+
             {
                 var matchingProfiles = db.Profiles.Where(x => x.Favoritkaka == model.SearchText).ToList();
-
                 var friendsviewModel = new FriendsViewModel();
                 friendsviewModel.Profiles = matchingProfiles;
                 friendsviewModel.SearchText = model.SearchText;
 
-                return View("~/Views/Home/Vänner.cshtml", friendsviewModel);
+
+                //if (!ModelState.IsValid)
+                //{
+                //    var values = ModelState.Values;
+                //    var packages = _context.Packages.ToList();
+                //    viewModel.Packages = packages;
+
+                    //if (!matchingProfiles.HasValue)
+
+                    //{ ViewBag.StatusMessage = "Finns ingen som heter så"; }
+
+
+                    return View("~/Views/Home/Vänner.cshtml", friendsviewModel);
+            
+                
+
             }
 
-        }
-    }
+
+
+
+
+        }    
+
 }
+
+
+}
+

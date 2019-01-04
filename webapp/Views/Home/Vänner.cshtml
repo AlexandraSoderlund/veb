@@ -24,9 +24,10 @@
                     <div class="clearfix"></div>
 
                 </div>
+
             </div>
         </div>
-        @Html.ValidationMessageFor(X=> X.SearchText, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(X => X.SearchText, "", new { @class = "text-danger" })
 
         @foreach (var p in Model.Profiles)
         {
@@ -47,6 +48,7 @@
             </div>
 
         }
+        <p class="danger">@ViewBag.StatusMessage</p>
 
     </div>
     }
