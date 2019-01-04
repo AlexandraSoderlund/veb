@@ -10,9 +10,13 @@
 </div>
 @foreach (var förfrågan in Model.FriendRequests)
 {
-    <div>
-        <div class="bold">
-            @förfrågan.Avsändare
-        </div>
+<div>
+    <div class="bold mt10">
+        @förfrågan.Avsändare
+        <button type="button" class="btn btn-success">Ja</button>
+        <button type="button" class="btn btn-danger">Nej</button>
     </div>
+
+
+</div>
 }
