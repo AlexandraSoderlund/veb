@@ -23,18 +23,14 @@ namespace webapp.Controllers
                 friendsviewModel.SearchText = model.SearchText;
 
 
-                //if (!ModelState.IsValid)
-                //{
-                //    var values = ModelState.Values;
-                //    var packages = _context.Packages.ToList();
-                //    viewModel.Packages = packages;
-
-                    //if (!matchingProfiles.HasValue)
-
-                    //{ ViewBag.StatusMessage = "Finns ingen som heter så"; }
 
 
-                    return View("~/Views/Home/Vänner.cshtml", friendsviewModel);
+                if (matchingProfiles.Count == 0 && model.SearchText!=null)  
+
+                {ViewBag.StatusMessage = "Finns ingen som har samma favoritkaka som dig :("; }
+
+
+                return View("~/Views/Home/Vänner.cshtml", friendsviewModel);
             
                 
 
