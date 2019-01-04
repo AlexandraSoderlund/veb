@@ -18,14 +18,14 @@
         @Html.HiddenFor(x => x.Id, new { @id = "profilIdHidden" })
     </div>
 
-    <h4> Inlägg </h4> //REquired
+    <h4> Inlägg </h4>
     <div>
-        <textarea id="nyPostTextBox" class="form-control" rows="6" required placeholder="Skriv något till  @Model.Namn"></textarea>
+        <textarea id="nyPostTextBox" class="form-control" rows="6" placeholder="Skriv något till  @Model.Namn"></textarea>
         <button id="savePostButton" type="button" class="btn btn-primary pull-right mt10">Skicka</button>
         <div class="clearfix"></div>
     </div>
 
-    <div id="errormessageDivtom" style="display:none"> Vänligen skriv in något i rutan </div>
+    <div id="errormessageDivtom" style="display:none" class = "text-danger" > Vänligen skriv in något i rutan </div>
 
     @foreach (var post in Model.MottagarePosts)
     {
@@ -45,19 +45,19 @@
 </div>
 
 <script type="text/javascript">
-    $("#errormessageDivtom").hide();
+    $("#errormessageDivtom").hide()
 
     document.getElementById("savePostButton").addEventListener("click", function () {
         $("#errormessageDivtom").hide();
         var mottagareId = document.getElementById("profilIdHidden").value;
         var text = document.getElementById("nyPostTextBox").value;
-        $("#errormessageDivtom").hide();
-
         if (text == "" || text.length <= 2) {
             $("#errormessageDivtom").show();
         }
         else {
             $("#errormessageDivtom").hide();
+
+      
             $.post('/api/profilepost/savepost', { MottagareId: mottagareId, Text: text }, function (response) {
                 location.reload();
             });
