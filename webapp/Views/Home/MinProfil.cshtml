@@ -8,11 +8,18 @@
 <div class="bold">
     Dina vänförfrågningar
 </div>
-@foreach (var förfrågan in Model.FriendRequests)
-{
-    <div>
-        <div class="bold">
-            @förfrågan.Avsändare
+
+
+    @foreach (var förfrågan in Model.FriendRequests)
+    {
+        <div>
+            <div class="bold mt10">
+                @förfrågan.Avsändare
+                <input type="submit" class="btn btn-success" id="acceptera" value="Ja" />
+                <input type="submit" class="btn btn-danger" id="neka" value="Nej" />
+            </div>
+
+
         </div>
-    </div>
-}
+
+    }
