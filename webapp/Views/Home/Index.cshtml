@@ -12,10 +12,22 @@
     <h1>Kärleksmums</h1>
     <p class="lead">När du vill ha lite mer mums i livet</p>
 </div>
-@*<div> fortsätt
-    @if (Request.IsAuthenticated)
-    {<h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag!</h4>}
-</div>*@
+@if (Request.IsAuthenticated)
+{
+
+<div id="banan" style="display:none">
+    <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag!</h4>
+</div>
+
+}
+
+else
+{
+<div id="banan">
+    <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag!</h4>
+</div>
+
+}
 
 @* Visar exempelanvändare på startsidan. När man klickar på någon av dessa kommer man antingen till inloggningssidan eller till den profilen *@
 
