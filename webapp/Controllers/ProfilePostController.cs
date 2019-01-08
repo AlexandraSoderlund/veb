@@ -6,8 +6,6 @@ using System.Web.Http;
 using webapp.Models;
 
 namespace webapp.Controllers
-
-
 {
     
     [RoutePrefix("api/profilepost")]

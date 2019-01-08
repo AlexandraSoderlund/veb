@@ -4,22 +4,3 @@
 <hr />
 
 @Html.Partial("ProfilPartial", Model)
-
-<div class="bold">
-    Dina vänförfrågningar
-</div>
-
-
-    @foreach (var förfrågan in Model.FriendRequests)
-    {
-        <div>
-            <div class="bold mt10">
-                @förfrågan.Avsändare
-                @Html.ActionLink("Ja", "AcceptFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new {  @class = "btn btn-success" })
-                @Html.ActionLink("Nej", "DeclineFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new { @class = "btn btn-danger" })
-            </div>
-
-
-        </div>
-
-    }

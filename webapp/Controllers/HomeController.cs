@@ -45,31 +45,19 @@ namespace webapp.Controllers
                 return View(profileViewModel);
             }
         }
-
+             
+        [Authorize]
         public ActionResult Vänner()
         {
             ViewBag.Message = "Här är dina vänner";
             using (var db = new DejtDbContext())
             {
-
-                var friendsView = new FriendsViewModel();
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
-
-                foreach (var x in profile.AvsändareFörfrågan.Where(x => x.Accepted)) {
-                    friendsView.Kontakter.Add(x.Mottagare);
-                }
-                foreach (var x in profile.Mottagareförfrågan.Where(x => x.Accepted))
-                {
-                    friendsView.Kontakter.Add(x.Avsändare);
-                }
-
+                var friendsView = FriendsHelper.GetViewModel(profile.Id);
                 return View(friendsView);
             }
 
         }
-
-
-
     }
 }

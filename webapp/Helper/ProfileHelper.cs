@@ -39,7 +39,7 @@ namespace webapp.Helper
                 profileViewModel.Description = profile.Description;
                 profileViewModel.Favoritkaka = profile.Favoritkaka;
                 profileViewModel.ProfileImageUrl = profile.ProfileImageUrl;
-                
+
                 return profileViewModel;
             }
 

@@ -22,10 +22,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
                     <li>@Html.ActionLink("Profil", "MinProfil", "Home")</li>
                     <li>@Html.ActionLink("Vänner", "Vänner", "Home")</li>
-                    
+                    <li id="friendRequestLi">
+                        <a href="/FriendsRequest/FriendRequests">
+                            Nya vänförfrågningar
+                            <span class="badge">
+                                <span id="numberofrequestsspan"></span>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -41,5 +47,19 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $("#friendRequestLi").hide()
+
+        $.get('/api/friendrequest/GetNumberOfFriendRequests', function (response) {
+            if (response > 0) {
+                $("#friendRequestLi").show()
+                $("#numberofrequestsspan").html(response);
+            } else {
+                $("#friendRequestLi").hide()
+            }
+        });
+
+    </script>
+
 </body>
 </html>
