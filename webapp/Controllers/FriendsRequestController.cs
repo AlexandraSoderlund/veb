@@ -18,7 +18,8 @@ namespace webapp.Controllers
         //till den datan som ProfileViewModel för den som klickar på skicka vänförfrågan..
 
         public ActionResult SendRequest(ProfileViewModel model)
-        { using (var db = new DejtDbContext())
+        {
+            using (var db = new DejtDbContext())
             {
                 var userId = User.Identity.GetUserId();
                 var mottagare = db.Profiles.Single(x => x.Id == model.Id);
@@ -28,7 +29,7 @@ namespace webapp.Controllers
                 Request.Avsändare = avsändare;
                 Request.Mottagare = mottagare;
                 Request.Accepted = false;
-                
+
                 mottagare.Mottagareförfrågan.Add(Request);
                 avsändare.AvsändareFörfrågan.Add(Request);
 
@@ -42,6 +43,19 @@ namespace webapp.Controllers
 
             }
 
+        }
+
+        [HttpGet]
+        public ActionResult AcceptFriendRequest(int friendRequestId)
+        {
+            using (var db = new DejtDbContext())
+            {
+                var friendRequest = db.Förfrågan.SingleOrDefault(x => x.Id == friendRequestId);
+                var uppdateradProfil = ProfileHelper.GetProfileViewModel(friendRequest.Mottagare.Id);
+
+                return View("~/Views/Home/Profil.cshtml", uppdateradProfil);
+
+            }
         }
     }
 }

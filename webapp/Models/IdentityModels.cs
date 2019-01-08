@@ -48,6 +48,29 @@ namespace webapp.Models
         {
             SeedUsers();
             SeedProfiles(context);
+            SeedFriendRequest(context);
+        }
+
+        public void SeedFriendRequest(DejtDbContext dejtDbContext)
+        {
+            using (var userdb = new ApplicationDbContext())
+            {
+                using (var db = new DejtDbContext())
+                {
+                    var user1 = userdb.Users.Single(x => x.Email == "test1@karleksmums.se");
+                    var user2 = userdb.Users.Single(x => x.Email == "test2@karleksmums.se");
+
+                    var profile1 = db.Profiles.Single(x => x.UserId == user1.Id);
+                    var profile2 = db.Profiles.Single(x => x.UserId == user2.Id);
+
+                    var friendRequest1 = new FriendsRequest();
+                    friendRequest1.Avsändare = profile2;
+                    friendRequest1.Mottagare = profile1;
+
+                    db.Förfrågan.Add(friendRequest1);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void SeedUsers()
@@ -110,7 +133,7 @@ namespace webapp.Models
                         profile.Description = "En slät kopp kaffe duger inte för mig";
                         profile.Favoritkaka = "Tårta";
                         profile.ProfileImageUrl = "~/bilder/man-1245658_1920.jpg";
-                    } 
+                    }
                     else if (u.Email == "test4@karleksmums.se")
                     {
                         profile.Namn = "Helena Helgräddarn";
@@ -132,7 +155,7 @@ namespace webapp.Models
                         profile.Favoritkaka = GetRandomKaka();
                         profile.ProfileImageUrl = "~/bilder/" + GetRandomImageUrl();
                     }
-                   
+
                     dejtDbContext.Profiles.Add(profile);
                 }
             }

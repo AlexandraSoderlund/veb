@@ -29,6 +29,7 @@ namespace webapp.Helper
                 .OrderByDescending(x => x.Id)
                 .Select(x => new FriendsRequestViewModel
                 {
+                    Id = x.Id,
                     Avsändare = x.Avsändare.Namn,
                     Accepted = x.Accepted,
                 })
