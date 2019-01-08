@@ -8,10 +8,20 @@
     @Html.HiddenFor(x => x.Id)
 
     <div class="form-group">
-        <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
+        <input type="submit" id="förfråganKnapp" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10"
+        onclick="myFunction()" />
         <div class="clearfix"></div>
-    </div>
-}
+
+
+    </div> @*$("#förfråganKnapp").val("Förfrågan skickad");*@
+}        @*input onclick="this.value = 'förfrågan är skickad'"*@ />
+
+
+<script>
+    function myFunction() {
+        document.getElementById("förfråganKnapp").style.color = "red";
+    }
+</script>
 
 @Html.Partial("~/Views/Home/ProfilPartial.cshtml", Model)
 
