@@ -15,11 +15,8 @@
         <div>
             <div class="bold mt10">
                 @förfrågan.Avsändare
-                @Html.ActionLink("Ja", "AcceptFriendRequest", "FriendRequest", new { @friendRequestId = förfrågan.Id, }, new {  @class = "btn btn-success" })
-                @*<input type="submit" class="btn btn-success" id="acceptera" value="Ja" />*@
-                @Html.ActionLink("Nej", "DeclineFriendRequest", förfrågan.Id, new { @class = "btn btn-danger" })
-
-                @*<input type="submit" class="btn btn-danger" id="neka" value="Nej" />*@
+                @Html.ActionLink("Ja", "AcceptFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new {  @class = "btn btn-success" })
+                @Html.ActionLink("Nej", "DeclineFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new { @class = "btn btn-danger" })
             </div>
 
 
