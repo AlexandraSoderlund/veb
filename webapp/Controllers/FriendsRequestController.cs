@@ -50,6 +50,26 @@ namespace webapp.Controllers
         {
             using (var db = new DejtDbContext())
             {
+                //Accepterar förfrågan
+                var friendRequest = db.Förfrågan.SingleOrDefault(x => x.Id == friendRequestId);
+                friendRequest.Accepted = true;
+                db.SaveChanges();
+
+                //Laddar om profilen
+                var userId = User.Identity.GetUserId();
+                var minProfil = db.Profiles.Single(x => x.UserId == userId);
+                var minProfilViewModel = ProfileHelper.GetProfileViewModel(minProfil.Id);
+
+                return View("~/Views/Home/Profil.cshtml", minProfilViewModel);
+
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DeclineFriendRequest(int friendRequestId)
+        {
+            using (var db = new DejtDbContext())
+            {
                 var friendRequest = db.Förfrågan.SingleOrDefault(x => x.Id == friendRequestId);
                 var uppdateradProfil = ProfileHelper.GetProfileViewModel(friendRequest.Mottagare.Id);
 

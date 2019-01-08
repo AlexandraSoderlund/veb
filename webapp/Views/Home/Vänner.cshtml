@@ -56,4 +56,18 @@
 </div>
 <hr/>
 <h3>Dina nuvarande mumsarlista</h3>
-BILDER PÅ KOMPISAR
+@foreach (var vän in Model.Kontakter) {
+    <p>
+        @Html.ActionLink(vän.Namn, "Profil", "Home", new { profileId = vän.Id }, null)
+    </p>
+
+    if (!string.IsNullOrEmpty(vän.ProfileImageUrl))
+    {
+    <img src="@Url.Content(vän.ProfileImageUrl)" class="profile-pic" />
+    }
+    else
+    {
+    <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+    }
+
+}

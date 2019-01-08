@@ -53,6 +53,17 @@ namespace webapp.Controllers
             {
 
                 var friendsView = new FriendsViewModel();
+                var userId = User.Identity.GetUserId();
+                var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
+
+                foreach (var x in profile.AvsändareFörfrågan.Where(x => x.Accepted)) {
+                    friendsView.Kontakter.Add(x.Mottagare);
+                }
+                foreach (var x in profile.Mottagareförfrågan.Where(x => x.Accepted))
+                {
+                    friendsView.Kontakter.Add(x.Avsändare);
+                }
+
                 return View(friendsView);
             }
 
