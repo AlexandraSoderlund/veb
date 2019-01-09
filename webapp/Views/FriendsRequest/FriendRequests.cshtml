@@ -3,7 +3,7 @@
 <h2>Dina vänförfrågningar</h2>
 <hr />
 
-@foreach (var förfrågan in Model.FriendRequests)
+@*@foreach (var förfrågan in Model.FriendRequests)
 {
     <div>
         <div class="bold mt10">
@@ -12,4 +12,25 @@
             @Html.ActionLink("Nej", "DeclineFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new { @class = "btn btn-danger" })
         </div>
     </div>
+}*@
+
+@foreach (var förfrågan in Model.FriendRequests)
+{
+    <p>
+        @Html.ActionLink(förfrågan.AvsändareProfile.Namn, "Profil", "Home", new { profileId = förfrågan.Id }, null)
+    </p>
+
+    if (!string.IsNullOrEmpty(förfrågan.AvsändareProfile.ProfileImageUrl))
+    {
+        <img src="@Url.Content(förfrågan.AvsändareProfile.ProfileImageUrl)" class="profile-pic" />
+    }
+    else
+    {
+        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+    }
+        <div class="mt10">
+            @Html.ActionLink("Ja", "AcceptFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Nej", "DeclineFriendRequest", "FriendsRequest", new { @friendRequestId = förfrågan.Id, }, new { @class = "btn btn-danger" })
+
+        </div>
 }

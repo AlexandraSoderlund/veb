@@ -30,7 +30,7 @@ namespace webapp.Helper
                 .Select(x => new FriendsRequestViewModel
                 {
                     Id = x.Id,
-                    Avsändare = x.Avsändare.Namn,
+                    AvsändareProfile = x.Avsändare,
                     Accepted = x.Accepted,
                 })
                 .ToList();
