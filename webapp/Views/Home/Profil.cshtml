@@ -4,22 +4,31 @@
 <hr />
 
 @using (Html.BeginForm("SendRequest", "FriendsRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
+{
     @Html.HiddenFor(x => x.Id)
 
 
-    foreach (var förfrågan in Model.FriendRequests) {
-
-      if (förfrågan.Accepted == false) {<div><p>Förfrågan är skickad</p></div>}
-      else if (förfrågan.Accepted == true) {<div><p>Ni är vänner</p></div>}
-      else{
-    <div class="form-group">
-        <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
-        <div class="clearfix"></div>
-    </div>
-        }
+    if (Model.ÄrVänner)
+    {
+        <div>
+            Ni är vänner
+        </div>
     }
-    
+    else if (Model.HarSkickatFörfrågan)
+    {
+        <div>
+            Vänförfrågan skickad
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
+            <div class="clearfix"></div>
+        </div>
+    }
+
+
 }
 
 

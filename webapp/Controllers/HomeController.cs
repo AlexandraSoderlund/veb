@@ -29,19 +29,19 @@ namespace webapp.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
-                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
+                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id, userId);
                 return View(profileViewModel);
             }
         }
 
-        //Tar emot ett profilId och returnerar en profileViewModel med en profil på en annan användare??
+        //Tar emot ett profilId och returnerar en profileViewModel med en profil på en annan användare
         [Authorize]
         public ActionResult Profil(int profileId)
         {
             using (var db = new DejtDbContext())
             {
-                var profile = db.Profiles.SingleOrDefault(x => x.Id == profileId);
-                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
+                var userId = User.Identity.GetUserId();
+                var profileViewModel = ProfileHelper.GetProfileViewModel(profileId, userId);
                 return View(profileViewModel);
             }
         }

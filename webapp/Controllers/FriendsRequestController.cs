@@ -19,7 +19,7 @@ namespace webapp.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.Single(x => x.UserId == userId);
-                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id);
+                var profileViewModel = ProfileHelper.GetProfileViewModel(profile.Id, userId);
                 return View(profileViewModel);
             }
         }
@@ -47,15 +47,8 @@ namespace webapp.Controllers
               
                 db.Förfrågan.Add(Request);
 
-                //if (Request.Accepted == false)
-                //{
-                //    ViewBag.StatusMessage = "Förfrågan har skickats!";
-                //}
-                //else { ViewBag.StatusMessage = "ni är vänner"; }
-
-
                 db.SaveChanges();
-                var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id);
+                var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id, userId);
 
                 return View("~/Views/Home/Profil.cshtml", uppdateradProfil);
 
