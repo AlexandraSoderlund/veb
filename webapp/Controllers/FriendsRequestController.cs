@@ -44,7 +44,15 @@ namespace webapp.Controllers
                 mottagare.Mottagareförfrågan.Add(Request);
                 avsändare.AvsändareFörfrågan.Add(Request);
 
+              
                 db.Förfrågan.Add(Request);
+
+                //if (Request.Accepted == false)
+                //{
+                //    ViewBag.StatusMessage = "Förfrågan har skickats!";
+                //}
+                //else { ViewBag.StatusMessage = "ni är vänner"; }
+
 
                 db.SaveChanges();
                 var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id);

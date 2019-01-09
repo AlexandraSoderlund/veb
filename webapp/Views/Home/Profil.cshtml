@@ -4,24 +4,25 @@
 <hr />
 
 @using (Html.BeginForm("SendRequest", "FriendsRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+{ 
     @Html.HiddenFor(x => x.Id)
 
+
+    foreach (var förfrågan in Model.FriendRequests) {
+
+      if (förfrågan.Accepted == false) {<div><p>Förfrågan är skickad</p></div>}
+      else if (förfrågan.Accepted == true) {<div><p>Ni är vänner</p></div>}
+      else{
     <div class="form-group">
-        <input type="submit" id="förfråganKnapp" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10"
-        onclick="myFunction()" />
+        <input type="submit" value="Skicka vänförfrågan" class="btn btn-default pull-right mt10" />
         <div class="clearfix"></div>
-
-
-    </div> @*$("#förfråganKnapp").val("Förfrågan skickad");*@
-}        @*input onclick="this.value = 'förfrågan är skickad'"*@ />
-
-
-<script>
-    function myFunction() {
-        document.getElementById("förfråganKnapp").style.color = "red";
+    </div>
+        }
     }
-</script>
+    
+}
+
+
 
 @Html.Partial("~/Views/Home/ProfilPartial.cshtml", Model)
 
