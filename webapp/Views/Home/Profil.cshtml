@@ -7,7 +7,7 @@
 {
     @Html.HiddenFor(x => x.Id)
 
-
+    //Kollar om förfrågan är skickad eller redan är vänner. Annars syns förfrågan knappen.
     if (Model.ÄrVänner)
     {
         <div>
