@@ -1,9 +1,6 @@
-﻿
-@model webapp.Models.IndexExempelAnvändareViewModel
-
+﻿@model webapp.Models.IndexExempelAnvändareViewModel
 
 @{
-    /**/
 
     ViewBag.Title = "Kärleksmums";
 }
@@ -12,10 +9,13 @@
     <h1>Kärleksmums</h1>
     <p class="lead">När du vill ha lite mer mums i livet</p>
 </div>
+
+@*När man loggar in så försvinner texten*@
+
 @if (Request.IsAuthenticated)
 {
 
-    <div id="banan" style="display:none">
+    <div style="display:none">
         <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag!</h4>
     </div>
 
@@ -23,7 +23,7 @@
 
 else
 {
-    <div id="banan">
+    <div>
         <h4>Nyfiken att kontakt med andra mumsiga användare? Vänta inte, registrera dig snabbt och enkelt, redan idag!</h4>
     </div>
 
@@ -38,6 +38,8 @@ else
             @Html.ActionLink(användare.Namn, "Profil", "Home", new { profileId = användare.Id }, null)
         </p>
 
+        @*Kollar om en profilbild finns, om inte läggs en standard-bild in*@
+
         @if (!string.IsNullOrEmpty(användare.ProfileImageUrl))
         {
             <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
@@ -48,6 +50,7 @@ else
         }
 
     </div>
+
 }
 <div class="clearfix"></div>
 

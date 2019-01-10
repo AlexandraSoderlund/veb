@@ -2,7 +2,7 @@
 
 <div class="dejt-container">
 
-
+    
     @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
     {
         <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
@@ -14,6 +14,8 @@
 
     <h4>@Model.Namn</h4>
     <div>@Model.Description</div>
+
+    @*HiddenFor använder vi för att få ut Id:t på profilen men att det ligger gömt i viewn*@
     <div>
         @Html.HiddenFor(x => x.Id, new { @id = "profilIdHidden" })
     </div>
@@ -25,7 +27,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div id="errormessageDivtom" style="display:none" class = "text-danger" > Vänligen skriv in något i rutan </div>
+    <div id="errormessageDivtom" style="display:none" class = "text-danger" > Vänligen skriv in minst 2 tecken </div>
 
     @foreach (var post in Model.MottagarePosts)
     {
@@ -44,20 +46,23 @@
 
 </div>
 
+@*EventListner på knappen som tilldelar värdet i textrutan till variabler*@
 <script type="text/javascript">
-    $("#errormessageDivtom").hide()
 
     document.getElementById("savePostButton").addEventListener("click", function () {
         $("#errormessageDivtom").hide();
         var mottagareId = document.getElementById("profilIdHidden").value;
         var text = document.getElementById("nyPostTextBox").value;
+
+        //Kollar om textmeddelandet är längre än två tecken
         if (text == "" || text.length <= 2) {
             $("#errormessageDivtom").show();
         }
         else {
             $("#errormessageDivtom").hide();
 
-      
+            //Skickar posten till ApiControllern
+
             $.post('/api/profilepost/savepost', { MottagareId: mottagareId, Text: text }, function (response) {
                 location.reload();
             });
