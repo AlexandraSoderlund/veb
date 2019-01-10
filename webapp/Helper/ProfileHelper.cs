@@ -44,6 +44,8 @@ namespace webapp.Helper
                     ||
                     profile.AvsändareFörfrågan
                     .Any(x => x.Mottagare.Id == inloggadProfile.Id && x.Accepted);
+                // Neeed helps
+                profileViewModel.ÄrSigSjälv = profile.AvsändareFörfrågan.Any(x => x.Id == inloggadProfile.Id);
 
                 return profileViewModel;
             }
