@@ -7,19 +7,21 @@
 {
     @Html.HiddenFor(x => x.Id)
 
+    // texten dyker upp om man försöker lägga till sig själv som kompis
+    <div>
+        @ViewBag.StatusMessage
+    </div>
     //Kollar om förfrågan är skickad eller redan är vänner. Annars syns förfrågan knappen.
+
     if (Model.ÄrVänner)
     {
         <div>
             Ni är vänner
         </div>
     }
-    else if(Model.ÄrSigSjälv)
-    {
-        <div>
-        Du kan inte lägga till dig själv
-        </div>
-    }
+
+
+
     else if (Model.HarSkickatFörfrågan)
     {
         <div>
@@ -33,6 +35,7 @@
             <div class="clearfix"></div>
         </div>
     }
+
 
 
 }

@@ -44,8 +44,13 @@ namespace webapp.Controllers
                 mottagare.Mottagareförfrågan.Add(Request);
                 avsändare.AvsändareFörfrågan.Add(Request);
 
-              
+
                 db.Förfrågan.Add(Request);
+
+                //får textmeddelande när man försöker lägga till sig själv som vän, förfrågan tas bort från databasen
+                if (Request.Avsändare.Equals(mottagare)) { db.Förfrågan.Remove(Request); ViewBag.StatusMessage =
+                        "du kan inte lägga till dig själv";
+                }
 
                 db.SaveChanges();
                 var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id, userId);
