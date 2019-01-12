@@ -20,6 +20,5 @@ namespace webapp.Models
         public List<FriendsRequestViewModel> FriendRequests { get; set; }
         public bool HarSkickatFörfrågan { get; set; }
         public bool ÄrVänner { get; set; }
-        public bool ÄrSigSjälv { get; set; }
     }
 }

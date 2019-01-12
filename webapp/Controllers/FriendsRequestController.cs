@@ -48,8 +48,10 @@ namespace webapp.Controllers
                 db.Förfrågan.Add(Request);
 
                 //får textmeddelande när man försöker lägga till sig själv som vän, förfrågan tas bort från databasen
-                if (Request.Avsändare.Equals(mottagare)) { db.Förfrågan.Remove(Request); ViewBag.StatusMessage =
-                        "du kan inte lägga till dig själv";
+                if (Request.Avsändare.Equals(mottagare))
+                {
+                    db.Förfrågan.Remove(Request);
+                    ViewBag.StatusMessage = "du kan inte lägga till dig själv";
                 }
 
                 db.SaveChanges();

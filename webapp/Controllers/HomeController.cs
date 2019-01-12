@@ -15,7 +15,7 @@ namespace webapp.Controllers
             using (var db = new DejtDbContext())
             {
                 var v = new IndexExempelAnvändareViewModel();
-                v.Profiles = db.Profiles.ToList();
+                v.Profiles = db.Profiles.Take(4).ToList();
 
                 return View(v);
             }

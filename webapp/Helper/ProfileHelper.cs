@@ -45,10 +45,6 @@ namespace webapp.Helper
                     profile.AvsändareFörfrågan
                     .Any(x => x.Mottagare.Id == inloggadProfile.Id && x.Accepted);
 
-
-                profileViewModel.ÄrSigSjälv = profile.AvsändareFörfrågan.Any(x => x.Avsändare.Id ==
-                inloggadProfile.Id);
-               
                 return profileViewModel;
             }
         }
