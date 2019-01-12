@@ -156,6 +156,8 @@ namespace webapp.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    //Skapar en profil när du registrerar dig
                     using (var db = new DejtDbContext())
                     {
                         var profile = new Datalager.Models.Profile();

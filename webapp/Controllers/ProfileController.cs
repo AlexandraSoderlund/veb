@@ -14,7 +14,7 @@ namespace webapp.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        //Gör ändringar samt sparar ändringar som görs Manage Index vyn samt returnerar samma vy när man trycker på spara
+        //Sparar ändringar i en profil
         [HttpPost]
         public ActionResult SaveProfile(EditProfileViewModel model)
         {
@@ -24,6 +24,7 @@ namespace webapp.Controllers
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
 
+                //Om profil inte finns så skapar vi den
                 if (profile == null)
                 {
                     profile = new Datalager.Models.Profile();
@@ -31,6 +32,7 @@ namespace webapp.Controllers
                     db.Profiles.Add(profile);
                 }
 
+                //Ändrar profilbild om man valt en ny
                 if (model.ProfileImage != null)
                 {
                     profile.ProfileImageUrl = "~/profilbilder/" + model.ProfileImage.FileName;
@@ -40,22 +42,16 @@ namespace webapp.Controllers
 
 
                 model.ProfileImageUrl = profile.ProfileImageUrl;
-                try
-                {
-                    if (ModelState.IsValid)
-                    {
-                        profile.Description = model.Description;
-                        profile.Namn = model.Namn;
-                        profile.Favoritkaka = model.Favoritkaka;
 
-                        db.SaveChanges();
-                        ViewBag.StatusMessage = "Dina ändringar är sparade";
-                    }
-                }
-                //Catchen fungerar inte, vet inte varför, ska man ha tryen över hela? 
-                //    Ändringarna ska inte sparas i databasen om valideringen är fel.
-                catch {
-                    throw new Exception("Kunde inte spara ändringar, försök igen");
+                //Om alla fält är giltiga så sparas det
+                if (ModelState.IsValid)
+                {
+                    profile.Description = model.Description;
+                    profile.Namn = model.Namn;
+                    profile.Favoritkaka = model.Favoritkaka;
+
+                    db.SaveChanges();
+                    ViewBag.StatusMessage = "Dina ändringar är sparade";
                 }
 
 

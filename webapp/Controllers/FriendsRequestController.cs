@@ -23,11 +23,8 @@ namespace webapp.Controllers
                 return View(profileViewModel);
             }
         }
-
-        // GET: FriendsRequest
-        //hämtar en ProfileViewmodel och sätter fälten i FriendsRequest modelen 
-        //till den datan som ProfileViewModel för den som klickar på skicka vänförfrågan..
-
+        
+        //Skickar en vänförfrågan
         public ActionResult SendRequest(ProfileViewModel model)
         {
             using (var db = new DejtDbContext())
@@ -47,7 +44,7 @@ namespace webapp.Controllers
 
                 db.Förfrågan.Add(Request);
 
-                //får textmeddelande när man försöker lägga till sig själv som vän, förfrågan tas bort från databasen
+                //Får textmeddelande när man försöker lägga till sig själv som vän, förfrågan tas bort från databasen
                 if (Request.Avsändare.Equals(mottagare))
                 {
                     db.Förfrågan.Remove(Request);
@@ -55,6 +52,8 @@ namespace webapp.Controllers
                 }
 
                 db.SaveChanges();
+
+                //hämtar den uppdaterade profilen på den man är inne på
                 var uppdateradProfil = ProfileHelper.GetProfileViewModel(mottagare.Id, userId);
 
                 return View("~/Views/Home/Profil.cshtml", uppdateradProfil);

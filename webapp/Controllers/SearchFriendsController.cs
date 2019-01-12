@@ -1,6 +1,5 @@
 ﻿using Datalager;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 using webapp.Models;
@@ -9,15 +8,14 @@ using webapp.Models;
 namespace webapp.Controllers
 {
     public class SearchFriendsController : Controller
-
     {
-        //Tar in ett obejkt av FriendsViewModel och kollar om den Favoritkaka man skriver in matchar Favoritkakan i modelen
+        //Söker efter profiler, matchar på favortikaka
         [HttpPost]
         public ActionResult Search(FriendsViewModel model)
         {
             using (var db = new DejtDbContext())
-
             {
+                //Här matchar vi favoritkakan med det som skrevs i sökrutan 
                 var matchingProfiles = db.Profiles.Where(x => x.Favoritkaka == model.SearchText).ToList();
                 var friendsviewModel = new FriendsViewModel();
                 friendsviewModel.Profiles = matchingProfiles;
@@ -26,6 +24,9 @@ namespace webapp.Controllers
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
 
+                //Läser upp dina kontaker från databasen
+                //Vi läser både från avsändare och mottagare listorna eftersom det inte spelar någon roll 
+                // vem som skickade vänförfrågan
                 foreach (var x in profile.AvsändareFörfrågan.Where(x => x.Accepted))
                 {
                     friendsviewModel.Kontakter.Add(x.Mottagare);
@@ -35,26 +36,15 @@ namespace webapp.Controllers
                     friendsviewModel.Kontakter.Add(x.Avsändare);
                 }
 
-
-                if (matchingProfiles.Count == 0 && model.SearchText!=null)  
-
-                {ViewBag.StatusMessage = "Finns ingen som har samma favoritkaka som dig :("; }
-
+                //Om man inte får någon matchning 
+                if (matchingProfiles.Count == 0 && model.SearchText != null)
+                {
+                    ViewBag.StatusMessage = "Finns ingen som har samma favoritkaka som dig :(";
+                }
 
                 return View("~/Views/Home/Vänner.cshtml", friendsviewModel);
-            
-                
-
             }
-
-
-
-
-
-        }    
-
-}
-
-
+        }
+    }
 }
 

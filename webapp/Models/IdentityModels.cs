@@ -36,7 +36,7 @@ namespace webapp.Models
         }
     }
     // Här är klassen som skapar vår databas och fyller den med testdata så att den inte är tom
-    // Databasen tas bort innan den skapas på nytt det gör vi får att databaschemat ska stämma om 
+    // Databasen tas bort innan den skapas på nytt det gör vi för att databaschemat ska stämma om 
     // vi gjort ändringar i vår modell.
     public class DejtDatabaseInitializer : DropCreateDatabaseAlways<DejtDbContext>
     {
@@ -51,6 +51,7 @@ namespace webapp.Models
             SeedFriendRequest(context);
         }
 
+        //Skapar en vänförfrågan
         public void SeedFriendRequest(DejtDbContext dejtDbContext)
         {
             using (var userdb = new ApplicationDbContext())
@@ -73,6 +74,7 @@ namespace webapp.Models
             }
         }
 
+        //Skapar upp 5st testanvändare om de inte redan finns
         public void SeedUsers()
         {
             using (var context = new ApplicationDbContext())
@@ -102,6 +104,10 @@ namespace webapp.Models
             }
         }
 
+        //Skapar upp profiler för alla users
+        //Sätter hårdkodade värden för våra 5 testanvändare och randomvärden på resten
+        //Vår anvndardatabas resetas inte samtidigt som vår vanliga datasbas
+        // därför kan det finnas användare utan profiler
         public void SeedProfiles(DejtDbContext dejtDbContext)
         {
             using (var userDatabaseContext = new ApplicationDbContext())
@@ -163,6 +169,7 @@ namespace webapp.Models
             dejtDbContext.SaveChanges();
         }
 
+        //Hämtar ett slumpmässigt namn 
         private string GetRandomName()
         {
             var names = new List<string>
@@ -179,6 +186,7 @@ namespace webapp.Models
             return GetRandomFromList(names);
         }
 
+        //Hämtar en slumpmässig kaka
         private string GetRandomKaka()
         {
             var kakor = new List<string>
@@ -196,6 +204,7 @@ namespace webapp.Models
             return GetRandomFromList(kakor);
         }
 
+        //Hämtar en slumpmässig beskrivning
         private string GetRandomBeskrivning()
         {
             var beskrivningar = new List<string>
@@ -212,6 +221,7 @@ namespace webapp.Models
             return GetRandomFromList(beskrivningar);
         }
 
+        //Hämtar en slumpmässig profilbild
         private string GetRandomImageUrl()
         {
             var beskrivningar = new List<string>
@@ -228,7 +238,8 @@ namespace webapp.Models
             return GetRandomFromList(beskrivningar);
         }
 
-
+        //Hämtar en slumpmässig sträng från en lista av strängar
+        // alla andra slumpmässiga-metoder använder den här
         private string GetRandomFromList(List<string> listOfStrings)
         {
             var next = rand.Next(0, listOfStrings.Count - 1);

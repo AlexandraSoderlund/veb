@@ -1,6 +1,6 @@
 ﻿using Datalager.Models;
 using System.Data.Entity;
-// skapat en egen databas
+
 namespace Datalager
 {
     public class DejtDbContext : DbContext
@@ -9,13 +9,13 @@ namespace Datalager
         public DbSet<Post> Posts { get; set; }
         public DbSet<FriendsRequest> Förfrågan { get; set; }
 
-
+        //karleksmums är namnet på vår databas
         public DejtDbContext() : base("karleksmums")
         {
 
         }
 
-        // Här kan man hjälpa Entity Framework om hur databasen hänger ihop.
+        // Här hjälper vi Entity Framework med hur databasen hänger ihop.
         // I vårat fall är det omöjligt för Entity Framework att lista ut vilket 
         // fält som hör till vilket eftersom vi har flera fält på till exempelvis Post som hör
         // till användare

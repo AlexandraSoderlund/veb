@@ -5,9 +5,8 @@ using webapp.Models;
 namespace webapp.Helper
 {
     public class FriendsHelper
-    {
-        //tar emot ett profilID som stämmer överens med profilidet i databasen.När en vänförfrågan är accepterad läggs
-    //    den nya vännen till i kontaktlistan. 
+    { 
+        //Hämtar en viewmodel fylld med kontakter för den profilen som matchar profilid
         public static FriendsViewModel GetViewModel(int profileId)
         {
             using (var db = new DejtDbContext())

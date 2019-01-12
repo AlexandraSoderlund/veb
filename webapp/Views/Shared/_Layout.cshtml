@@ -44,13 +44,15 @@
             <p>&copy; @DateTime.Now.Year - Kärleksmums</p>
         </footer>
     </div>
-
+ 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $("#friendRequestLi").hide()
 
+        //Hämtar hur många vänförfrågningar vi har
         $.get('/api/friendrequest/GetNumberOfFriendRequests', function (response) {
+            //Om vi har vänförfrågningar så visar vi hur många, annars visar vi inget
             if (response > 0) {
                 $("#friendRequestLi").show()
                 $("#numberofrequestsspan").html(response);

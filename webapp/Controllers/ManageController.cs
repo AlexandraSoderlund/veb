@@ -66,6 +66,7 @@ namespace webapp.Controllers
             var viewModel = new EditProfileViewModel();
             using (var db = new DejtDbContext()) {
 
+                //uppdaterar din profil med favoritkaka, beskrivning osv
                 var profile = db.Profiles.SingleOrDefault(x => x.UserId == userId);
                 if (profile != null)
                 {

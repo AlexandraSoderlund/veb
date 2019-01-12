@@ -11,6 +11,8 @@ namespace webapp.Controllers
     [RoutePrefix("api/profilepost")]
     public class ProfilePostController : ApiController
     {
+        //Lägger till en post på en profil
+
         [HttpPost]
         [Route("savepost")]
         public void SavePost(PostViewModel viewModel)
