@@ -304,6 +304,7 @@
     <Content Include="Views\Home\MinProfil.cshtml" />
     <Content Include="Views\Home\ProfilPartial.cshtml" />
     <Content Include="Views\FriendsRequest\FriendRequests.cshtml" />
+    <Content Include="Views\Shared\ProfileImagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

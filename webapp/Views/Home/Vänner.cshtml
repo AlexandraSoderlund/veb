@@ -7,7 +7,7 @@
 <hr />
 <div class="dejt-container">
 
-    
+
     @*Sökruta för att söka fram en vän. Visar den vän som matchar favoritkakan man skrivit in *@
     <h4>Sök mumsare</h4>
     <div class="bold">Matcha på din favoritkaka</div>
@@ -15,63 +15,42 @@
 
     @using (Html.BeginForm("Search", "SearchFriends", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-    <div class="dejt-container">
-        <div class="row">
-            <div class="col-xs-8">
-                @Html.TextBoxFor(x => x.SearchText, new { @class = "mt10 form-control", @placeholder = "Sök på din favoritkaka..." })
-            </div>
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <input type="submit" value="Sök" class="btn btn-default pull-right mt10" />
-                    <div class="clearfix"></div>
+        <div class="dejt-container">
+            <div class="row">
+                <div class="col-xs-8">
+                    @Html.TextBoxFor(x => x.SearchText, new { @class = "mt10 form-control", @placeholder = "Sök på din favoritkaka..." })
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <input type="submit" value="Sök" class="btn btn-default pull-right mt10" />
+                        <div class="clearfix"></div>
+
+                    </div>
 
                 </div>
-
             </div>
+            @Html.ValidationMessageFor(X => X.SearchText, "", new { @class = "text-danger" })
+
+            @foreach (var p in Model.Profiles)
+            {
+                @Html.Partial("ProfileImagePartial", p);
+
+                <div>
+                    @p.Favoritkaka
+                </div>
+
+            }
+            <p class="text-danger">@ViewBag.StatusMessage</p>
+
         </div>
-        @Html.ValidationMessageFor(X => X.SearchText, "", new { @class = "text-danger" })
-
-        @foreach (var p in Model.Profiles)
-        {
-            if (!string.IsNullOrEmpty(p.ProfileImageUrl))
-            {
-                <img src="@Url.Content(p.ProfileImageUrl)" class="profile-pic" />
-            }
-            else
-            {
-                <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-            }
-
-            <div class="bold">
-                @Html.ActionLink(p.Namn, "Profil", "Home", new { profileId = p.Id }, null)
-            </div>
-            <div>
-                @p.Favoritkaka
-            </div>
-
-        }
-        <p class="text-danger">@ViewBag.StatusMessage</p>
-
-    </div>
     }
 
 </div>
-<hr/>
+<hr />
 
 @*Här loopas alla vänner ut i vänlistan*@
 <h3>Dina nuvarande mumsarlista</h3>
-@foreach (var vän in Model.Kontakter) {
-    <p>
-        @Html.ActionLink(vän.Namn, "Profil", "Home", new { profileId = vän.Id }, null)
-    </p>
-
-    if (!string.IsNullOrEmpty(vän.ProfileImageUrl))
-    {
-    <img src="@Url.Content(vän.ProfileImageUrl)" class="profile-pic" />
-    }
-    else
-    {
-    <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-    }
-
+@foreach (var vän in Model.Kontakter)
+{
+    @Html.Partial("ProfileImagePartial", vän);
 }

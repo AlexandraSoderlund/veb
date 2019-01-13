@@ -25,8 +25,32 @@
 }
 
 .profile-pic {
-    width: 240px;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
     border-radius: 50%;
+}
+
+.no-profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile-container {
+    margin-right: 20px;
+    text-align: center;
+}
+.profile-container-inner {
+    display: inline-block;
+    text-align: center;
+}
+
+
+.profile-name {
+    font-size: 15px;
+    margin-top: 8px;
 }
 
 .bold {

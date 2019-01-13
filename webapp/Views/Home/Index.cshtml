@@ -33,22 +33,8 @@ else
 
 @foreach (var användare in Model.Profiles)
 {
-    <div class="pull-left" style=" margin-right: 20px">
-        <p>
-            @Html.ActionLink(användare.Namn, "Profil", "Home", new { profileId = användare.Id }, null)
-        </p>
-
-        @*Kollar om en profilbild finns, om inte läggs en standard-bild in*@
-
-        @if (!string.IsNullOrEmpty(användare.ProfileImageUrl))
-        {
-            <img src="@Url.Content(användare.ProfileImageUrl)" class="profile-pic" />
-        }
-        else
-        {
-            <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
-        }
-
+    <div class="pull-left profile-container">
+        @Html.Partial("ProfileImagePartial", användare)
     </div>
 
 }

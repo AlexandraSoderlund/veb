@@ -2,14 +2,14 @@
 
 <div class="dejt-container">
 
-    
+
     @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
     {
-        <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+        <div class="profile-pic" style="background-image: url('@Url.Content(Model.ProfileImageUrl)')"></div>
     }
     else
     {
-        <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+        <img class="no-profile-pic" src="~/bilder/noProfilePic.jpg" />
     }
 
     <h4>@Model.Namn</h4>
@@ -27,7 +27,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div id="errormessageDivtom" style="display:none" class = "text-danger" > Vänligen skriv in minst 3 tecken </div>
+    <div id="errormessageDivtom" style="display:none" class="text-danger"> Vänligen skriv in minst 3 tecken </div>
 
     @foreach (var post in Model.MottagarePosts)
     {

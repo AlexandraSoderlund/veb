@@ -12,11 +12,11 @@
         <h4>Profilbild</h4>
         @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
         {
-            <img src="@Url.Content(Model.ProfileImageUrl)" class="profile-pic" />
+            <div class="profile-pic" style="background-image: url('@Url.Content(Model.ProfileImageUrl)')"></div>
         }
         else
         {
-            <img src="~/bilder/noProfilePic.jpg" class="profile-pic" />
+            <img class="no-profile-pic" src="~/bilder/noProfilePic.jpg" />
         }
         @Html.TextBoxFor(x => x.ProfileImage, new { Type = "File", @class = "mt10" })
         <h4>Namn</h4>

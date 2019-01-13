@@ -1,0 +1,20 @@
+﻿@model Datalager.Models.Profile
+
+
+@*Kollar om en profilbild finns, om inte läggs en standard-bild in*@
+
+<div class="profile-container-inner">
+    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+    {
+        <div class="profile-pic" style="background-image: url('@Url.Content(Model.ProfileImageUrl)')"></div>
+    }
+    else
+    {
+        <img class="no-profile-pic" src="~/bilder/noProfilePic.jpg"/>
+    }
+
+    <p class="profile-name">
+        @Html.ActionLink(Model.Namn, "Profil", "Home", new { profileId = Model.Id }, null)
+    </p>
+</div>
+
