@@ -48,7 +48,7 @@ namespace webapp.Models
         {
             SeedUsers();
             SeedProfiles(context);
-            SeedFriendRequest(context);
+            //SeedFriendRequest(context);
         }
 
         //Skapar en vänförfrågan
