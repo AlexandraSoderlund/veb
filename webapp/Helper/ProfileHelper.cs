@@ -21,6 +21,7 @@ namespace webapp.Helper
         {
             using (var db = new DejtDbContext())
             {
+
                 //Hämtar profilen för den vi är inne på och den vi är inloggad som 
                 var inloggadProfile = db.Profiles.Single(x => x.UserId == inloggadUserId);
                 var profile = db.Profiles.Single(x => x.Id == profilId);
